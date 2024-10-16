@@ -248,3 +248,102 @@ posso usare git commit —amend per  sostituire l’ultimo commit effettuato, qu
 Spesso facendo git merge possono verificarsi dei conflitti quando la stessa zona di codice (chunks) viene modificata da più utenti, o abbiamo dei merge con codici uguali o quando sono tutti e tre diversi.
 
 git reset che parte dal local repo, aggiorna e sovrascrive gli index con quello che c’è nel commit più recente
+
+## Branch
+
+Creare dei branch è praticamente obbligatorio, quando cloniamo siamo già in presenza di due branch: Main e remote main.
+
+La prima branch non vale come main effettivo, infatti il vero e proprio “main” sarà quello su cui verrà eseguito il primo commit; i branch si usano soprattutto in un workflow molto grande.
+
+## Gitflow
+
+Inizializzo con `git flow init`.
+
+Differenzia i vari rami dando loro, in base alla diversa categoria, comandi differenti.
+
+I rami principali sono `Master`e`Develop`, il primo contiene le versioni stabili, develop invece è il ramo di integrazione, nel quale il codice viene modificato prima del rilascio di una versione stabile.
+
+Altri rami sono:
+
+- `Feature` : un ramo non infinito, viene creato per ogni funzionalità nuova che voglio sviluppare, quando penso di aver terminato lo sviluppo di tale feature mi sposto nel ramo develop. La feature deve partire dall’ultima versione stabile che è partita dal develop. Non posso aprire feature con lo stesso nome.
+    
+    Il comando `git flow feature start <nome_feature>` corrisponde a:
+    
+    ```latex
+    git checkout develop
+    git branch <feature>
+    git checkout <feature>
+    ```
+    
+    Il comando `git flow feature finish <nome_feature>` corrisponde a:
+    
+    ```latex
+    git checkout develop
+    git merge --no-ff feat1 (--no-ff vuol dire "ti obbligo a fare il merge anche in caso di fast forward(avviene in mancanza di altri commit)")
+    git branch -d feat1
+    ```
+    
+- `Release`: Congelo le feature che dovranno esserci nella prossima release, quando faccio una release (beta) vado a riparare, chiedendo ai beta tester dei feedback.
+    
+    Avvio utilizzando `git flow release start ver`che corrisponde a
+    
+    ```latex
+    git checkout -b ver develop
+    ```
+    
+    mentre termino con `git flow release finish ver`:
+    
+    ```latex
+    git checkout master
+    git merge --no-ff release-ver
+    git tag -a ver
+    git checkout develop
+    git merge --no-ff release-ver
+    git branch -d release-ver
+    ```
+    
+- `Hotfix`: creato in caso di problemi importanti (crash o grandi problemi di sicurezza).
+    
+    Si apre con `git flow hotfix start ver`:
+    
+    ```latex
+    git checkout -b ver master
+    ```
+    
+    si chiude con `git flow hotfix finish ver`:
+    
+    ```latex
+    git checkout master
+    git merge --no-ff ver
+    git tag -a ver
+    git checkout develop
+    git merge --no-ff ver
+    git branch -d ver
+    ```
+    
+- `Support`: aperto quando devo fixare dei bug in una versione vecchia del software senza andare ad intaccare la nuova versione (ad esempio viene presentato un bug della versione 1.1 ma siamo già alla v2.0).
+    
+
+### Git request-pull
+
+### Fork
+
+Va a risolvere il problema delle autorizzazioni
+
+## Gerrit
+
+Progettato da google, è un sistema di review del codice sviluppato internamente a google utilizzato per la gestione di progetti open source troppo grandi come android.
+
+### Verifier: Verifying a chance
+
+Uno strumento o processo utilizzato in Gerrit per verificare che le modifiche proposte siano corrette e funzionino come dovrebbero.
+
+### Approver
+
+Successivamente alla verifica di una proposta di modifica questa deve essere anche approvata
+
+### Build automation
+
+Per proteggersi da checkin di una versione non funzionante possiamo automatizzare la ricompilazione e il testing
+
+### Make
