@@ -269,7 +269,7 @@ Altri rami sono:
     
     Il comando `git flow feature start <nome_feature>` corrisponde a:
     
-    ```latex
+    ```java
     git checkout develop
     git branch <feature>
     git checkout <feature>
@@ -277,7 +277,7 @@ Altri rami sono:
     
     Il comando `git flow feature finish <nome_feature>` corrisponde a:
     
-    ```latex
+    ```java
     git checkout develop
     git merge --no-ff feat1 (--no-ff vuol dire "ti obbligo a fare il merge anche in caso di fast forward(avviene in mancanza di altri commit)")
     git branch -d feat1
@@ -287,13 +287,13 @@ Altri rami sono:
     
     Avvio utilizzando `git flow release start ver`che corrisponde a
     
-    ```latex
+    ```java
     git checkout -b ver develop
     ```
     
     mentre termino con `git flow release finish ver`:
     
-    ```latex
+    ```java
     git checkout master
     git merge --no-ff release-ver
     git tag -a ver
@@ -306,13 +306,13 @@ Altri rami sono:
     
     Si apre con `git flow hotfix start ver`:
     
-    ```latex
+    ```java
     git checkout -b ver master
     ```
     
     si chiude con `git flow hotfix finish ver`:
     
-    ```latex
+    ```java
     git checkout master
     git merge --no-ff ver
     git tag -a ver
@@ -347,3 +347,9 @@ Successivamente alla verifica di una proposta di modifica questa deve essere anc
 Per proteggersi da checkin di una versione non funzionante possiamo automatizzare la ricompilazione e il testing
 
 ### Make
+- Composto da comandi di shell.
+
+### Ant
+
+### Gradle
+pensato per la definizione di scripting, utilizzato per builds multi progetto, va a definire un linguaggio specifico per le dipendenze.
