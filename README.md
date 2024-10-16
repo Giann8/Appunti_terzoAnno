@@ -8,5 +8,5 @@ In caso voleste modificare o aggiornare un documento consiglio di evidenziare ev
  
 
 > [!WARNING]
-Alcuni corsi non presentano argomenti fissi (come **`SP`**) possono quindi avere argomenti totalmente differenti dall'anno accademico corrente, si consiglia perciò di seguire i corsi.
+Alcuni corsi non presentano argomenti fissi (come **`Sicurezza e Privatezza`**) possono quindi avere argomenti totalmente differenti dall'anno accademico corrente, si consiglia perciò di seguire i corsi.
 Altri presentano invece appunti consegnati direttamente dal professore e/o realizzati da ex studenti.
