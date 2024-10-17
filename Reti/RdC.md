@@ -114,3 +114,24 @@ CSMA/CD è fondamentale per l'efficienza delle reti Ethernet, permettendo l'util
 L’intervallo di tempo randomico per trasmettere è determinato dall’algoritmo BEB (Binary Exponential back-off)
 
 64 B è la dimensione minima di una frame ethernet
+
+## Domini di collisione
+Possiamo utilizzarli al posto dei semplici cavi, e presentano i seguenti componenti:
+- ### `Hub`
+	è un dispositivo di livello 1 passivo.
+	un hub è un centro stella passivo (non presenta `Carrier Sense` o ` Collision Detection`) di livello fisico che riceve e ritrasmette il segnale; va a modellare il comportamento del **BUS** ed è realizzabile su più livelli. La frame entra nell'hub che la propaga ai client i quali rispondono con una frame a loro volta. 
+	Sull'hub dobbiamo contare come lunghezza sia l'invio che il ritorno della frame.
+
+- ### `Bridge`
+	è un dispositivo classificato a livello 2 (opera a livello `Mac`) e opera attraverso forwarding, andando a separare i domini di collisione a cui è collegato.
+	il livello 2 locale è molto simile a quello di rete
+
+- ### `Switch`
+	è un apparato che ammette connessioni senza richiedere particolari vincoli sulla distanza, in base a ciò che viene detto dalla tabella di forwarding si sceglie cosa fare.
+	Possiamo dire che sia un bridge per la funzione di forwarding ma è differenziato ad esso poiché le connessioni con i client sono `Punto a Punto` e quindi non ci sarà più carrier sense e non avremo più il vincolo $u_t > t_p$
+	
+ $$
+	 U =\frac{1}{1+\frac{2B}{cF}}
+	 $$
+
+
