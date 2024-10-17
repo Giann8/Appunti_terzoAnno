@@ -123,15 +123,32 @@ Possiamo utilizzarli al posto dei semplici cavi, e presentano i seguenti compone
 	Sull'hub dobbiamo contare come lunghezza sia l'invio che il ritorno della frame.
 
 - ### `Bridge`
-	è un dispositivo classificato a livello 2 (opera a livello `Mac`) e opera attraverso forwarding, andando a separare i domini di collisione a cui è collegato.
-	il livello 2 locale è molto simile a quello di rete
+	è un dispositivo classificato a livello 2 (opera a livello `Mac`) e opera attraverso `forwarding`, andando a separare i domini di collisione a cui è collegato.
+	il livello 2 locale è molto simile a quello di rete.
+	La tabella di forwarding opera in questo modo: la tabella è inizialmente vuota e quando arriva un frame da A il bridge salva da quale porta del bridge il frame di A è arrivato, successivamente instrada il frame verso B in base alla sua porta:
+	- se la porta di B non è nota il frame viene inoltrato a tutte le porte tranne ad A (ciò è detto `flooding`)
+	- se la porta di B è nota ed è la stessa di A il frame non sarà inoltrato (sarà già arrivato poiché nello stesso dominio di collisione)
+	- se la porta di B è nota ma non appartiene allo stesso dominio di collisione di A allora il frame viene inoltrato nella porta del dominio di B
+	- alla risposta di B si ricomincia.
+	La tabella dopo un certo periodo viene resettata e ricostruita, in modo da tenerla aggiornata.
 
 - ### `Switch`
 	è un apparato che ammette connessioni senza richiedere particolari vincoli sulla distanza, in base a ciò che viene detto dalla tabella di forwarding si sceglie cosa fare.
 	Possiamo dire che sia un bridge per la funzione di forwarding ma è differenziato ad esso poiché le connessioni con i client sono `Punto a Punto` e quindi non ci sarà più carrier sense e non avremo più il vincolo $u_t > t_p$
-	
  $$
 	 U =\frac{1}{1+\frac{2B}{cF}}
 	 $$
 
+
+## Reti Virtuali
+Le stazioni vengono raggruppate di solito dagli amministratori in base al settore.
+
+#### Standard Vlan
+
+
+#### LLC sublayer
+Logical Link Control, mentre il MAC layer permette la connessione, questo permette di controllare l'invio del frame, scegliendo il ricevente.
+Presenta due proposte di protocollo: 
+- Affidabile (non usato)
+- Non affidabile
 
