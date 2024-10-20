@@ -110,21 +110,32 @@ con entrambi si arriverà comunque ad ottenere un programma funzionante.
             - non abbiamo tempo di avere feedback dall’utente.
     
     - **Modello a fontana**: nel modello a fontana, in caso di problemi si riparte dal primo passaggio (ovvero la definizione dei requisiti)  senza però andare ad eliminare il lavoro svolto. Cerco infatti il punto più “indietro” che viene influenzato dal problema, così da poterlo correggere, in questo modello non congeliamo il prodotto in uso (che può provocare problemi) ma lo lascio lavorare permettendomi di arrivare ad una eventuale manutenzione o evoluzione dello stesso.
-    - **modello a flipper**: è un processo non definito, può essere svolto qualunque passo, è un modello creato come critica ai modelli incrementali.
+    - **modello a flipper**: è un processo non definito, può essere svolto qualunque passo, è un modello creato come critica ai modelli incrementali, i vari punti in cui rimbalza la pallina rappresentano una fase, non ho quindi il controllo del mio progetto.
     
-- **Modelli trasformazionali**: cercano di mantenere sotto controllo tutti i passi e i procedimenti in modo formale; partendo da specifiche spiegate in modo informale (dal cliente) otteniamo come risultato un prototipo che differisce per efficienza e completezza dal prodotto finale, inoltre tali passi devono essere dimostrabili formalmente come corretti. In caso il passo non fosse corretto, ovvero nel caso arrivassi ad un vicolo cieco, posso tornare un passo indietro scegliendo una nuova strada.
-    - **MetaModello a spirale**: non è propriamente un modello bensì un framework in cui possono essere inquadrati altri modelli. è di tipo incrementale ed è guidato da un’analisi dei rischi, ovvero su cosa possiamo fare in caso di un certo rischio
+- **Modelli trasformazionali**: cercano di mantenere sotto controllo tutti i passi e i procedimenti in modo formale; partendo da specifiche spiegate in modo informale (dal cliente) otteniamo come risultato un prototipo (diverso dal concetto di prototipo precedentemente definito) che differisce per efficienza e completezza dal prodotto finale, inoltre tali passi devono essere dimostrabili formalmente come corretti. In caso il passo non fosse corretto, ovvero nel caso arrivassi ad un vicolo cieco, posso tornare un passo indietro scegliendo una nuova strada (viene utilizzato soprattutto per progetti molto piccoli con caratteristiche molto rigide); le prove di correttezza utilizzate possono essere riutilizzate che vengono mantenute in un repo apposito.
+    - **MetaModello a spirale**: non è propriamente un modello bensì un framework/pattern in cui possono essere inquadrati altri modelli. è di tipo incrementale ed è guidato da un’analisi dei rischi (diminuisce il costo? è fattibile in questo quantitativo di tempo?) ovvero su cosa possiamo fare in caso di un certo rischio. Si dice a spirale poiché (*aggiungere immagine*) caratterizzata da quattro fasi principali: 1. Determinare gli obiettivi 2. identificare e risolvere i rischi 3. Sviluppo e testing 4. pianificazione dell'iterazione. Il raggio della spirale indica il costo cumulativo del progetto.
+		
         - **Variante Win-WIn**: questa variante prende in considerazione anche i rischi contrattuali che possono esserci con i clienti, problemi quindi di comunicazione che necessitano di contrattazioni e negoziazione. Entrambe le parti, quindi, vincono attraverso questa variante.
-    - **Modello COTS (Component Off The Shelf)**: si parte dalla disponibilità interna o sul mercato di moduli preesistenti, non riusciremo a creare un progetto formato solo da moduli preesistenti ma ciò ci permette di di non dover partire perforza da zero. Dobbiamo però basarci su altre attività (vedi appunti corso).
+    
+    - **Modello COTS (Component Off The Shelf)**: (*ci sono per caso funzionalità/componenti già presenti? magari utilizzati in progetti vecchi o in progetti di altre persone/aziende*) si parte dalla disponibilità interna o sul mercato di moduli pre-esistenti, non riusciremo a creare un progetto formato solo da moduli preesistenti ma ciò ci permette di di non dover partire *pefforza* da zero. Dobbiamo però basarci su altre attività (vedi appunti corso). Anche la prontezza della risposta rispetto ad alcuni problemi va a favore o contro all'adozione di tali componenti.
 
-- Modelli agili: (Ci si concentra sull’extreme programming)
+- Metodi agili: (Ci si concentra sull’extreme programming, nascono dagli sviluppatori stessi)
+	Utilizzano il manifesto dei metodi agili che indica i componenti fondanti dell'XP:
+	- Individuals and interactions
+	- Working software
+	- Customer collaboration
+	- Responding to change
+	Unico problema di questo metodo è la mancanza di persone oggettive.
+	
+	I requisiti diventano volatili, possiamo gestirlo, infatti il cliente può cambiare sempre idea
     
-    I requisiti diventano volatili, possiamo gestirlo, infatti il cliente può cambiare sempre idea
+    - ***Modello Lean Waste*:** nata dalla lean manufactoring di Toyota. Si basa sulla riduzione di spazzatura e di cose inutili, rimandiamo una scelta che ci vincola in modo da ridurre eventuali sprechi. (in programmazione può anche essere una feature che creiamo ma che non è alla fine dei conti utile per il cliente ma solo per noi)
     
-    - **Modello Lean Waste:** nata dalla lean manufactoring di Toyota. Si basa sulla riduzione di sprechi e di cose inutili.
-    - **Modello Kanban:** basato su una lavagna con diverse colonne: “to-do”, “in progress”,” testing” e “done” nelle quali andiamo ad inserire le varie parti del progetto, in done metteremo ciò che è stato completato, che ha passato i test e che è stato valutato e accettato dal cliente. Per Kanban noi dobbiamo andare a minimizzare il “work in progress”.
-    - **Scrum:** Approccio simile al win-win, il cliente può aggiungere o togliere delle richieste ma dopo una certa scadenza (due settimane) sposto ciò che è stato richiesto nella seconda colonna dove rimane congelata.
-    - **Crystal:** Si basa sulla comunicazione osmotica la conoscenza cioè viene sparsa a tutto il team, ovvero viene condiviso ciò su cui si ha lavorato per evitare eventuali “blocchi” del lavoro causati da imprevisti verso uno o più elementi del gruppo.
+    - ***Modello Kanban*:** basato su una lavagna con diverse colonne: “to-do”, “in progress”,” testing” e “done” nelle quali andiamo ad inserire le varie parti del progetto, in done metteremo ciò che è stato completato, che ha passato i test e che è stato valutato e accettato dal cliente. Per Kanban noi dobbiamo andare a minimizzare il “work in progress” e le distrazioni in modo da massimizzare il lavoro.
+    
+    - ***Scrum*:** Approccio simile al *win-win*, il cliente può aggiungere o togliere delle richieste ma dopo una certa scadenza (due settimane) sposto ciò che è stato richiesto nella seconda colonna dove rimane congelata, ciò vuol dire che il cliente non potrà richiederne la modifica prima della scadenza pattuita per il nuovo incontro.
+    
+    - ***Crystal*:** Si basa sulla *comunicazione osmotica* la conoscenza cioè viene sparsa a tutto il team, ovvero viene condiviso ciò su cui si ha lavorato per evitare eventuali “blocchi” del lavoro causati da imprevisti verso uno o più elementi del gruppo.
 
 ## eXtreme Programming (XP)
 
