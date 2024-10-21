@@ -368,3 +368,5 @@ Per proteggersi da checkin di una versione non funzionante possiamo automatizzar
 
 ### Gradle
 pensato per la definizione di scripting, utilizzato per builds multi progetto, va a definire un linguaggio specifico per le dipendenze.
+
+### Plugin
