@@ -139,30 +139,34 @@ con entrambi si arriverà comunque ad ottenere un programma funzionante.
 
 ## eXtreme Programming (XP)
 
-Si basa sul TDD (test driven development), vado cioè a creare prima un test che possa verificare la correttezza dell’idea, dopo aver creato il test da cui partire evolveremo per baby-steps, ovvero tramite piccole porzioni, andando a testare questi e ad ottenere così un feedback istantaneo.
+Si basa sul TDD (test driven development), vado cioè a creare prima un test che possa verificare la correttezza dell’idea, dopo aver creato il test da cui partire evolveremo per baby-steps, ovvero tramite piccole porzioni, andando a testare questi e ad ottenere così un feedback istantaneo. Vado quindi a cercare la semplicità e la velocità.
 
-Mantra del TDD è (rosso, verde,refactoring):
+### TDD
+Mantra del ***TDD*** è (`Rosso, Verde, Refactoring`):
 
-- write a failing test
+- write a failing test (che compili e dia errore)
 - make it pass
-- refactor
+- refactor (modifiche che faccio per migliorare le prestazioni generali del codice senza modificarne il risultato)
 
-Variabili in gioco:
+Variabili in gioco nell'XP:
 
-- Portata: ovvero la quantità di funzionalità che si vogliono implementare;
-- Tempo: ovvero il tempo che ho a disposizione per terminare il progetto;
-- Qualità: ovvero la qualità del progetto che si deve ottenere;
-- Costo: Le risorse finanziarie che si possono impegnare nel progetto;
+- **Portata**: ovvero la quantità di funzionalità che si vogliono implementare, di cose che devono essere fatte;
+- **Tempo**: ovvero il tempo che ho a disposizione per terminare il progetto;
+- **Qualità**: ovvero la qualità del progetto che si deve ottenere;
+- **Costo**: Le risorse finanziarie che si possono impegnare nel progetto, dipende dal tempo (maggiore sarà il tempo dedicato al progetto, maggiore sarà il costo);
 
 Principi:
 
-| XP | Ing SW “classica” |
-| --- | --- |
-| Feedback rapido | Separazione degli interessi |
-| presumere la semplicità | Astrazione e modularità |
-| Accettare il cambiamento | anticipazione del cambiamento |
-| Modifica incrementale | generalità |
-| Lavoro di qualità | incrementalità |
+| XP                                                                   | Ing SW “classica”             |
+| -------------------------------------------------------------------- | ----------------------------- |
+| Feedback rapido (in caso di dubbi devo poter chiedere subito)        | Separazione degli interessi   |
+| presumere la semplicità (progetto solo per ciò che mi è stato detto) | Astrazione e modularità       |
+| Accettare il cambiamento                                             | anticipazione del cambiamento |
+| Modifica incrementale                                                | generalità                    |
+| Lavoro di qualità                                                    | incrementalità                |
+Grazie all'extreme programming il costo di nuove modifiche sarà si alto inizialmente, ma tenderà a stabilizzarsi con l'aumentare della quantità di tempo impiegato sul progetto, questo poiché il tempo verrà usato soprattutto su operazioni di refactoring che permetteranno di mantenere la semplicità e la pulizia del codice e facilitando future implementazioni.
+Ciò è diverso dalla correzione di errori che ovviamente aumenterà le tempistiche del progetto (Ci vuole coraggio per fare il refactoring poiché andiamo a toccare una parte di codice che funziona).
+
 
 ## Figure in gioco e responsabilità
 
