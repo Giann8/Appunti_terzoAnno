@@ -36,3 +36,10 @@ Dove la salviamo?
 0. metodi
 1. design pattern
 2. principi, a cui punteremo molto nel corso.
+
+### Reference Escaping (trucco napoletano)
+violazione dell'incapsulation, porta alla bocciatura diretta (kek)
+
+
+### Immutabilità
+8
