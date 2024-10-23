@@ -379,3 +379,48 @@ Permette di chiamare codice non ancora scritto, così facendo non serve modifica
 
 ### Esempiop di diagramma delle classi UML
 tutti gli elementi presenti all'interno dell'interfaccia devono essere astratti.
+- classi
+	- attributi
+	- metodi
+- relazioni:
+	- Generalizzazione e implementazione
+	- associazione,aggregazione e composizione
+	- dipendenze
+
+## Pattern
+è un design pattern, una soluzione di progettazione di una situazione ricorrente.
+
+### Antipattern
+
+
+### Idiomi
+Come un pattern ma non indipendente dal linguaggio
+
+### Metapattern
+Sono situazioni comuni che posso ritrovare nei pattern:
+Identifica due metodi:
+- **HookMethod**: determina il comportamento specifico nelle sottoclassi, il _punto caldo_ in cui posso intervenire per personalizzare e/o adattare lo schema;
+- **TemplateMethod**: mette insieme diversi punti caldi (scheletro), è l'_elemento freddo_ ovvero quello che non varia;
+
+_`Come si relazionano?`_
+
+- **Unification**: si trovano nella stessa classe del framework
+- **Connection**: quando sono in classi separate che vengono collegate tramite una associazione.
+- **Recursive Connection**:sono in classi tra loro collegate anche tramite relazione di gerarchizzazione.
+
+Abbiamo tre categorie principali di pattern:
+- **Creazionali**: risolvono problemi attraverso la creazione di oggetti
+- **Comportamentali**: problemi di dinamicità dell'interazione tra oggetti
+- **Strutturali**: problemi riguardanti la struttura statica delle classi/oggetti.
+
+
+#### Singleton Pattern
+Utilizzano solo oggetti e non classi cercando di rendere la classe responsabile del fatto che non può esistere più di una istanza.
+è Teoricamente giusto
+
+#### Singleton Java Idiom
+Questo va a sfruttare che i campi degli enumerativi possono essere creati tramite degli oggetti costanti creati al momento del loro primo uso. è definito Idioma poiché soluzione dipendente da uno specifico linguaggio.
+Non è di norm leggibile ma molto riconoscibile.
+
+### Iterator pattern
+Permette di accedere agli elementi di un oggetto aggregatore in maniera sequenziale senza dover esporre la rappresentazione interna.
