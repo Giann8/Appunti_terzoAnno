@@ -167,6 +167,7 @@ Object o=new Cane(”bau”)
 ## Astrazione procedurale
 
 Ci aiuta a cogliere gli elementi che ci servono e a considerare uguali cose che non lo sono.
+Utilizzando requires andiamo a definire gli argomenti da poter utilizzare all'interno del metodo, se si utilizzassero argomenti differenti da quelli de requires si avranno effetti non conosciuti (crash, restituizione di un eventuale exception).
 
 - **Astrazione per parametrizzazione:** eliminazione dei dettagli uguali che distinguono le realizzazioni in modo da generalizzare. andiamo a prendere i dettagli uguali e li andiamo a raggruppare
 - **Astrazione per fattorizzazione:**
@@ -175,6 +176,13 @@ Ci aiuta a cogliere gli elementi che ci servono e a considerare uguali cose che 
 **Località:** a chi scrive non interessa la zona di modifica, all’utilizzatore non interessa il come viene fatto un certo lavoro, l’utilizzatore della funzione dispone del contratto nel quale vengono scritte le informazioni principali. 
 
 **Modificabilità:** manutenzione, se ho sbagliato qualcosa e nel contratto è giusto ho sbagliato qualcosa non nel contratto ma nel codice, si può mantenere un codice senza impattare il contratto
+
+Utilizzando **_Throws_** in coda al codice il programma solleva un'eccezione in caso di problemi.
+--> Sollevare ``java THROW new E()``
+#### Eccezioni
+- Checked
+- Unchecked
+
 
 ## Pacchetti
 
@@ -381,3 +389,4 @@ La presenza di un metodo astratto obbliga i sottotipi ad avere quel metodo astra
 
 - L’ereditarietà è utile, strumento reso possibile dal polimorfismo e dal dispatching, presenta però alcuni limiti
 - Composizione + delega, approccio ortogonale a quello dell’ereditarietà
+

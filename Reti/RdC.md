@@ -1,6 +1,8 @@
 
 # Reti di calcolatori
 
+
+
 Requisiti rete:
 
 - prestazioni
@@ -15,15 +17,25 @@ messaggio: coda input —> router (viene analizzato) —> output
 
 L’unica parte software è la popolazione ella tabella, il resto viene svolto via hardware.
 
-Frammento in pacchetti (unità dati di dimensione massima fissata) l’unità dati delll’utente che viene poi riassemblata.
+Frammento in pacchetti (unità dati di dimensione massima fissata) l’unità dati dell’utente che viene poi riassemblata.
 
-### Tabella di routing
+L' **Instradamento** è la capacità di un nodo di trovare la strada verso un altro nodo
+L'affidabilità deve garantire:
+- completezza, devono arrivare tutti i frame.
+- ordine, i frammenti devono arrivare in ordine.
+- non duplicità, non devo avere copie.
+
+
+### Routing
+ 
+Trovare la migliore strada per arrivare a destinazione in un certo istante di tempo
 
 Tabella sulla quale si basa il processo di routing.
 
 Una grande unità dati viene frammentata in tanti pacchetti quanti ne servono per poter far passare tutta l’unità senza incorrere in un overflow.
 
-origine: frammento →destinazione assemblo
+origine: frammento → destinazione assemblo
+Tra frammento singolo e file si perde, per questo il tempo e la possibilità di arrivo dei pacchetti può variare.
 
 ## Commutazione
 
@@ -34,7 +46,7 @@ Con commutazione si intende la scelta di un percorso per spedire un messaggio da
 
 I dati da trasmettere vengono decorati con:
 
-- un’intestazione iniziale (che identifica mittente e destinatario)
+- un’intestazione iniziale (che identifica mittente e destinatario, header)
 - una coda che funge da codice rilevatore di errore
 - possibili altre informazioni tipo il protocollo usato
 
@@ -51,13 +63,18 @@ Ogni rete appartenente all’internet usa tecniche diverse di instradamento e us
 Le reti a virtual circuit (circuito virtuale) sono reti affidabili poiché mantengono il traffico su un unico percorso
 
 La validazione di avvenuta ricezione avviene attraverso l’**ACK (acknowledgment)**
+Grazie a questo posso anche decidere un tempo t utile.
 
 **Jitter:** varianza sul ritardo in rete
 
 Per calcolare la velocità del traffico su rete useremo:
 
-$$ T = t_{x,p}+2t_{p} $$
-
+$$ T = t_{x}+2t_{p} $$
+Dove tx è il tempo di trasmissione, $t_{p}$ tempo di propagazione.
+$$t_x = \frac{l}{ck} $$
+Dove $l=lunghezza\space frame$ e $c=velocità\space della \space luce$
+$$t_p=\frac{l_{cavo}}{c}$$
+Ovviamente T non è esattamente uguale al valore dato ma leggermente più grande.
 Il tempo di trasmissione funzione della velocità della trasmissione, quindi alla velocità del clock, è uguale alla dimensione del pacchetto/il bitrate dello stesso.
 
 Il tempo di propagazione invece è dato dal rapporto tra distanza e velocità del canale
@@ -152,3 +169,19 @@ Presenta due proposte di protocollo:
 - Affidabile (non usato)
 - Non affidabile
 
+## Livello Network
+
+Questo è il livello 3, si occupa dell' **Instradamento** de dell' **Indirizzamento** che, come già visto, servono rispettamente di come instradare un pacchetto tra sottoreti diverse e dell'identificazione univoca di un nodo in una sottorete.
+
+
+#### Ip
+protocollo che si occupa dell'adressing
+l'header di un IP è di 20 byte
+
+#### Routing
+Protocollo per fare Routing
+
+#### ICMP
+
+#### ARP - RARP
+Risolviamo l'indirizzo IP nell'indirizzo MAC locale

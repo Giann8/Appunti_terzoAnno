@@ -368,3 +368,14 @@ Per proteggersi da checkin di una versione non funzionante possiamo automatizzar
 
 ### Gradle
 pensato per la definizione di scripting, utilizzato per builds multi progetto, va a definire un linguaggio specifico per le dipendenze.
+
+## Interfaccia e polimorfismo
+
+# Lezione 9
+
+### Interface segregation
+### Collegamento dinamico ed extensibility
+Permette di chiamare codice non ancora scritto, così facendo non serve modificare il codice per permettergli di richiamare metodi di una nuova classe (da qui extensibility)
+
+### Esempiop di diagramma delle classi UML
+tutti gli elementi presenti all'interno dell'interfaccia devono essere astratti.
