@@ -185,3 +185,34 @@ Protocollo per fare Routing
 
 #### ARP - RARP
 Risolviamo l'indirizzo IP nell'indirizzo MAC locale
+
+Gli Indirizzi IP sono divisi in diverse categorie ma principalmente abbia:
+- indirizzi multicast/broadcast: Classe D
+- indirizzi punto-punto, queste ultime si dividono in:
+	- Classe A, primo bit è 0
+	- Classe B, primo bit è un 1 (classe A quindi non è), utilizziamo un secondo bit (qua = 0)
+	- Classe C, Primo bit è 1 secondo è 1 terzo è 0 e così via fino alla classe  E
+	- Classe D, Multicast
+	- Classe E
+	La differenza tra questi si ha da A -> C, infatti scendendo di classe diminuirà la quantità di hostId presenti, meno HostId = molti più NetId presenti in rete.
+Problema di queste classi è lo spreco che si andrebbe ad ottenere a causa della staticità dei blocchi.
+Ci sono due modi per andare a risolvere questo problema:[[
+]]1. organizzativo tramite **_Subnetting_**, va ad eliminare totalmente l'idea di organizzazione iniziale
+2. Operativo:
+	1. **_NAT_**
+	2. **_CIDR_**: (Class-Less Intern Domain Routing)
+
+
+## Subnetting [Standard RFC 950]
+Andiamo ad introdurre un ulteriore livello di gerarchia per indirizzare le sottoreti, l'admin di rete va quindi a dividere la rete in `SubnetId` e `HostId`, vado poi a codificare il tutto come standard RFC 950. SubnetId e HostId non sono definiti tramite stack li va invece a definire l'admin di sistema, non possiamo quindi conoscere la suddivisione di bit, poiché conosciuta solo dall'admin che può a sua volta modificare a suo piacimento.
+#### Come risolviamo?
+l'admin decide di fare subnetting e trova comodo la suddivisione 6 bit (subnet) 10 bit (host)
+Utilizziamo quindi la maschera di sottorete (subnet mask), ogni router non ha solo una entry con ip address da indirizzare ma anche la maschera di subnetting.  La maschera è formata da 6 bit di 1 (subnetID) e 10 bit di 0 (hostId), andando a fare un and tra maschera di rete e IP otteniamo il valore dei bit di subnet che indicherà il numero della  sottorete da indirizzare.
+Una `/22` è una sottorete avente 22 bit.
+
+##### CIDR
+Milano: 194.24.0._ -> 194.24.7._ ha segnato 2048 indirizzi
+
+##### NAT {RFC 3022}
+La rete presenta un IP privato e un IP pubblico.
+L'indirizzo pubblico è quello che viene utilizzato, necessitiamo quindi di qualcosa che possa trasformare un IP pubblico in privato e viceversa; entra quindi in gioco il nat che si frappone tra internet privato e pubblico (unico).
