@@ -239,9 +239,10 @@ Dove scrivere della presenza delle eccezioni?
 
 Elenco in EFF, tu puoi darmi qualsiasi cosa in ingresso ma farò qualcosa di diverso (sollevare un’eccezione) in caso mettessi qualcosa di sbagliato (”non req”), eventuali effetti collaterali (modifiche) devono essere specificati poiché possibilmente distruttivi. 
 
-## A. Data
+## Astrazione dei Dati
 
 Info→ rappresentazione
+costruire, osservare e modificare
 
 ```java
 Class Stud{
@@ -249,16 +250,20 @@ Class Stud{
 	costruttori
 	Metodi
 }
-Lisr <integer> elem;
+List <integer> elem;
 1 elem!=null
-2 nulle appartiene a list
+2 null appartiene a list
 3 Duplicati #per ora non ci interessa
 4 ordine #per ora non ci interessa
 ```
 
+Come si specificano?
+Astrazione per parametrizzazione (Dati)
+Astrazione per specificazione (comportamenti)
+
 Se ho un riferimento final la variabile non potrà più cambiare, la mutabilità nella specificazione non ha niente a che fare con la mutabilità dell’implementazione.
 
-Private va a infierire sul nome variabile non sul suo contenuto, vuol dire che per evitare che qualcuno possa vedere/modificare il contenuto.
+Private va a infierire sul nome variabile non sul suo contenuto, vuol dire che per evitare che qualcuno possa vedere/modificare il contenuto, esso non è visibile esternamente dalla classe in cui viene implementato.
 
 ```java
 private IntSet(List<Integer> els){
@@ -268,14 +273,15 @@ public IntSet(List<Integer> els){
 		this(new ArrayList<Integer>(other,els))
 }
 ```
-
 # Methods
 
 I vari metodi appartenenti alla classe madre vengono ereditati/sovrascritti nella classe figlia.
 
 `String toString()` restituisce una string
 
-@Overrides viene letta dal compilatores
+@Overrides viene letta dal compilatore
+
+
 
 ```java
 @Overrides
