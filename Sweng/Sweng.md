@@ -187,6 +187,21 @@ Tra gli sviluppatori è presente un `Tracker`, figura alternata tra i componenti
 	- Il primo problema è la perdita di tempo per la troppa comunicazione
 	- Effetto ancora:
 		l'ancora è un valore che va ad influenzare le altre persone nella stima
+	**Stime agili: Planning poker**
+		Vengono presentate le carte, i developer possono quindi fare domande e chiarire assunzioni e rischi con i clienti.
+		Date tutte le carte queste vengono scelte e girate contemporaneamente, così che la probabilità di avere un'ancora sia molto bassa, successivamente si esprimono le proprie stime e chi ha dato quelle più basse o più alte spiegano le loro motivazioni; si ripete ciò fin quando non arriviamo ad un accordo unanime.
+	**Team Estimation Game:**
+	1.  **Prima fase:**
+		Si fa una pila con le "storie" e il primo developer sceglie dove mettere la carta sinistra (facile) destra (difficile) o sotto (equivalente), quello successivo sposta una carta già presente o ne sceglie un'altra e così via
+	2. **Seconda fase:**
+		Ci si rimette in coda davanti al tavolo e si ha un mazzo di carte tipo quello del planning poker, la prima carta si mette sulla prima colonna(prima carta è di solito di valore 2), il primo developer prende la prima carta e la posiziona sulla colonna del valore che pensa possa avere. Il developer successivo, come nella prima fase, prende un'altra carta o sposta quelle già messe altrimenti (se non ci sono carte) passa.
+	3. **Terza fase:**
+		Si va a stimare il tempo (ore/uomo) di una delle carte più semplici (di valore 2) e le altre stime saranno calcolate proporzionalmente.
+		**Velocity**: capacità del team di completare certi lavori, va a sostituire la necessità di ri-mappare unità ideali in tempi assoluti, dopo aver completato la prima iterazione il team dirà di poter sviluppare tanti punti quanti erano quelli fatti nell'iterazione precedente.
+		>[!Attenzione] 
+		>- Non è un metro di valutazione del team
+		>- Non si devono considerare storie non finite
+		>- Non deve essere imposta
 
 ## Raggruppare per fasi
 
