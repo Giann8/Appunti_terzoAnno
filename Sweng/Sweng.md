@@ -165,16 +165,28 @@ Principi:
 | Modifica incrementale                                                | generalità                    |
 | Lavoro di qualità                                                    | incrementalità                |
 
------------------------------------------
 Grazie all'extreme programming il costo di nuove modifiche sarà si alto inizialmente, ma tenderà a stabilizzarsi con l'aumentare della quantità di tempo impiegato sul progetto, questo poiché il tempo verrà usato soprattutto su operazioni di refactoring che permetteranno di mantenere la semplicità e la pulizia del codice e facilitando future implementazioni.
 Ciò è diverso dalla correzione di errori che ovviamente aumenterà le tempistiche del progetto (Ci vuole coraggio per fare il refactoring poiché andiamo a toccare una parte di codice che funziona).
 
-
+---
+# Lezione 4
 ## Figure in gioco e responsabilità 
 
 Il manager/cliente ha la responsabilità di decidere portata, priorità tra funzioni e date dei rilasci mentre ha il diritto di sapere cosa può essere fatto, di vedere i progressi nel sistema e di cambiare idea.
 
 Lo sviluppatore deve stimare i tempi per le singole funzionalità, le conseguenze delle scelte tecnologiche e una pianificazione dettagliata, ha il diritto di sapere cosa è necessario attraverso requisiti chiari; ha il diritto di cambiare le stime dei tempi in base all'esperienza acquisita e di produrre un software di qualità. Deve inoltre identificare eventuali funzionalità pericolose per il successo del progetto (se una funzione viene messa in secondo piano dal cliente ma si rivela essere il punto fondante del progetto stesso.) 
+Tra gli sviluppatori è presente un `Tracker`, figura alternata tra i componenti del team di sviluppo che va a misurare velocità, quantità di bug trovati ed altri elementi che possano permettere di avere una visione completa riguardo all'avanzamento dell'iterazione (ovvero dello sviluppo) consentendo al team di rimanere sempre aggiornato.
+
+1. **Planning Game**:
+	in questa fase vengono determinate le funzionalità  del rilascio successivo, andando a combinare valutazioni tecniche (tempistiche e capacità degli sviluppatori) insieme alle priorità commerciali. Per questo planning game il cliente utilizzerà delle carte dove saranno presenti frase di descrizione, scenario d'uso e test di accettazione successivamente gli sviluppatori faranno una stima dei tempi e dei costi per implementare tali feature. Attraverso queste info il `manager` deciderà quali implementare e quali no in base ad alcuni vincoli (i tempi non devono superare 400 ore mentre devo massimizzare il valore ).
+	**`Come faccio le stime?`** da un lato è buono fare una stima a gruppi dall'altro in extreme programming dobbiamo avere il consenso per tutti quelli del team.
+	- stime molto differenti: si cerca di trovare un accordo nel team
+	- Stime simili ma molto alte: si parla con il cliente per poter suddividere la feature in parti minori
+	- nessun accordo tra le stime ma sono simili: devo trovare una `stima condivisa` che non sia pessimista
+	**Stime condivise:**
+	- Il primo problema è la perdita di tempo per la troppa comunicazione
+	- Effetto ancora:
+		l'ancora è un valore che va ad influenzare le altre persone nella stima
 
 ## Raggruppare per fasi
 
