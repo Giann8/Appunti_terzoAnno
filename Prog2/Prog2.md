@@ -276,6 +276,25 @@ public IntSet(List<Integer> els){
 # Methods
 
 I vari metodi appartenenti alla classe madre vengono ereditati/sovrascritti nella classe figlia.
+si dividono in:
+- ###### Costruttori
+```java
+class g {
+public g(){}
+}
+```
+- ##### Fabbricatori 
+```java
+class g{
+public static c method(){}
+}
+```
+- ##### Osservatori
+```java
+class g {
+public c method(){}
+}
+```
 
 `String toString()` restituisce una string
 
