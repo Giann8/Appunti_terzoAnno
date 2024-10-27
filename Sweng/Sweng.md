@@ -414,7 +414,7 @@ Il concetto principale dei bug tracker è appunto la segnalazione o comunque la 
 ### Bug workflow e ciclo di vita (simile a FSM)
 
   
-![[06_bug-workflow.png]]
+![image info](../Images/06_bug-workflow.png)
 
 ### Unified Process
 
