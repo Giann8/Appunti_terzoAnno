@@ -80,18 +80,18 @@ con entrambi si arriverà comunque ad ottenere un programma funzionante.
         - `Rigidità`: Stima dei costi e valutazione dei rischi vengono fatti all’inizio e non quando ho capito bene il problema, resto così rigido congelando i sotto-prodotti e perdendo la flessibilità richiesta.
         - `Monoliticità`: poiché la pianificazione è orientata ad un singolo rilascio, ciò però ci porta ad un aumento dei costi e a sforare i tempi di consegna. (contraddice quindi la realizzazione di un software modificabile ed evolubile, inoltre la manutenzione viene fatta solo sul codice)
         
-        ![Screenshot 2024-10-15 alle 10.33.04.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8966f6ff-4fda-4cfd-93a6-676a9ac4742e/c49c1dd1-1782-40bf-81c2-2394e02f982f/Screenshot_2024-10-15_alle_10.33.04.png)
+		![image info](../Images/Modello_a_cascata.png)
         
     - **Modello a V (dente di pesce cane):** una delle varianti del modello a cascata, introduce una più estesa fase di testing. Nonostante sia sempre un modello sequenziale presenta dei nuovi legami tra le fasi di sviluppo corrispondenti alle attività di verifica e convalida. Va ad accentuare il rapporto con il cliente, coinvolto con la richiesta di feedback per ciascun sottoprodotto generato. Le nuove attività introdotte sono definite quindi come:
         - `verifica`: va a controllare la correttezza rispetto alla descrizione formale delle specifiche;
         - `convalidazione`: controlla, attraverso un feedback continuo, la compatibilità con le esigenze del cliente.
         
-        ![Screenshot 2024-10-15 alle 10.36.22.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8966f6ff-4fda-4cfd-93a6-676a9ac4742e/43851789-7dab-404d-bcc4-44b6b38a3837/Screenshot_2024-10-15_alle_10.36.22.png)
+        ![image info](../Images/v-model.png)
         
 - **Modelli iterativi**: ottenuto sapendo che la sequenzialità stringente delle fasi rappresenta un grosso limite, si pensa di far ripetere alcune fasi più di una volta con dei cicli fino all’ottenimento di un prodotto worth.
     - **Modello a cascata con singola retroazione:** Come il modello a cascata ma presenta una fase di testing e permette agli sviluppatori di poter ritornare al passo precedente, arrivati però al prodotto non possiamo tornare indietro per la manutenzione e l’introduzione stessa di un’iterazione renderebbe molto difficile la pianificazione del lavoro e il monitoraggio dell’avanzamento. Un’altra criticità è la possibilità di avere un problema non nel punto precedente ma direttamente all’inizio (**Condiviso da molti modelli iterativi**)
         
-        ![Screenshot 2024-10-15 alle 10.42.04.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8966f6ff-4fda-4cfd-93a6-676a9ac4742e/e5fd0f8d-657f-4bd5-b862-b7983aba0761/Screenshot_2024-10-15_alle_10.42.04.png)
+		![image info](../Images/waterfall-retroazione.png)
         
 - **Modello prototipale:**  Si divide in pubblico e privato, lo creo per parlare con il cliente, per far vedere al cliente il funzionamento (grezzo) del software, permette di ridurre significativamente i requisiti e errori di design soprattutto riguardanti l’interfaccia utente:
     - Il `modello pubblico` viene mostrato al cliente, comporta dei rischi nella futura gestione del codice poiché può portare il cliente a richiedere nuove funzioni, ci permette di far compiere scelte all’utente; `non sto consegnando il progetto ma lo sto mostrando`;
@@ -110,14 +110,22 @@ con entrambi si arriverà comunque ad ottenere un programma funzionante.
             - non abbiamo tempo di avere feedback dall’utente.
     
     - **Modello a fontana**: nel modello a fontana, in caso di problemi si riparte dal primo passaggio (ovvero la definizione dei requisiti)  senza però andare ad eliminare il lavoro svolto. Cerco infatti il punto più “indietro” che viene influenzato dal problema, così da poterlo correggere, in questo modello non congeliamo il prodotto in uso (che può provocare problemi) ma lo lascio lavorare permettendomi di arrivare ad una eventuale manutenzione o evoluzione dello stesso.
+	
+	![image info](../Images/02_fountain-model.png)
+	
     - **modello a flipper**: è un processo non definito, può essere svolto qualunque passo, è un modello creato come critica ai modelli incrementali, i vari punti in cui rimbalza la pallina rappresentano una fase, non ho quindi il controllo del mio progetto.
+    ![image info](https://marcobuster.github.io/sweng/assets/02_pinball-life-cycle.png)
     
 - **Modelli trasformazionali**: cercano di mantenere sotto controllo tutti i passi e i procedimenti in modo formale; partendo da specifiche spiegate in modo informale (dal cliente) otteniamo come risultato un prototipo (diverso dal concetto di prototipo precedentemente definito) che differisce per efficienza e completezza dal prodotto finale, inoltre tali passi devono essere dimostrabili formalmente come corretti. In caso il passo non fosse corretto, ovvero nel caso arrivassi ad un vicolo cieco, posso tornare un passo indietro scegliendo una nuova strada (viene utilizzato soprattutto per progetti molto piccoli con caratteristiche molto rigide); le prove di correttezza utilizzate possono essere riutilizzate che vengono mantenute in un repo apposito.
+	![image info](https://marcobuster.github.io/sweng/assets/02_transformational-models.png)
     - **MetaModello a spirale**: non è propriamente un modello bensì un framework/pattern in cui possono essere inquadrati altri modelli. è di tipo incrementale ed è guidato da un’analisi dei rischi (diminuisce il costo? è fattibile in questo quantitativo di tempo?) ovvero su cosa possiamo fare in caso di un certo rischio. Si dice a spirale poiché (*aggiungere immagine*) caratterizzata da quattro fasi principali: 1. Determinare gli obiettivi 2. identificare e risolvere i rischi 3. Sviluppo e testing 4. pianificazione dell'iterazione. Il raggio della spirale indica il costo cumulativo del progetto.
+	    ![image info](https://marcobuster.github.io/sweng/assets/02_spiral-model.png)
 		
         - **Variante Win-WIn**: questa variante prende in considerazione anche i rischi contrattuali che possono esserci con i clienti, problemi quindi di comunicazione che necessitano di contrattazioni e negoziazione. Entrambe le parti, quindi, vincono attraverso questa variante.
-    
+        
+	    ![image info](https://marcobuster.github.io/sweng/assets/02_win_win.png)
     - **Modello COTS (Component Off The Shelf)**: (*ci sono per caso funzionalità/componenti già presenti? magari utilizzati in progetti vecchi o in progetti di altre persone/aziende*) si parte dalla disponibilità interna o sul mercato di moduli pre-esistenti, non riusciremo a creare un progetto formato solo da moduli preesistenti ma ciò ci permette di di non dover partire *pefforza* da zero. Dobbiamo però basarci su altre attività (vedi appunti corso). Anche la prontezza della risposta rispetto ad alcuni problemi va a favore o contro all'adozione di tali componenti.
+    ![image info](https://marcobuster.github.io/sweng/assets/02_cots.png)
 
 - Metodi agili: (Ci si concentra sull’extreme programming, nascono dagli sviluppatori stessi)
 	Utilizzano il manifesto dei metodi agili che indica i componenti fondanti dell'XP:
