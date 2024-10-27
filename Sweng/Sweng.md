@@ -414,7 +414,7 @@ Il concetto principale dei bug tracker è appunto la segnalazione o comunque la 
 ### Bug workflow e ciclo di vita (simile a FSM)
 
   
-![Bug workflow](https://marcobuster.github.io/sweng/assets/06_bug-workflow.png)
+![[06_bug-workflow.png]]
 
 ### Unified Process
 
