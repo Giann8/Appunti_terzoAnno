@@ -424,3 +424,79 @@ Non è di norm leggibile ma molto riconoscibile.
 
 ### Iterator pattern
 Permette di accedere agli elementi di un oggetto aggregatore in maniera sequenziale senza dover esporre la rappresentazione interna.
+
+# Lezione_10
+
+### Nullability
+Il valore `null` può essere assegnato ad una variabile che indica un riferimento ad un oggetto.
+Troviamo un problema quando proviamo a dereferenziare a variabile e non puntando nulla otteniamo un NullPointerException.
+
+>[!Warning]
+>Meglio non mettere nel codice dell'esame null visibili (come nell'interfaccia)
+
+Come sappiamo non dobbiamo usare commenti come ```//should never be null```
+
+#### Approccio fail-fast
+un approccio utilizzabile è il `fail-fast`, andiamo cioè ad inserire un controllo diretto (senza utilizzare if (valore !=null)) attraverso l'aggiunta di ```java Object.requireNonNull(valore)``` 
+
+#### Programmazione difensiva
+Andiamo a fare il throw di una exception ```if (valore === null || valore2=== null)throw IllegalArgumentException```
+
+#### Utilizzo @NotNull
+Questo elemento, utilizzato quando andiamo a creare una nuova variabile o all'interno dei parametri va a restituire un warning per (ma non blocca) i valori null immessi illegalmente, inoltre va a propagarsi nelle variabili figlie/padri
+
+## NullObject pattern
+
+Utilizzo il singleton.
+
+```java
+	public interface CardSource {
+	card draw();
+	boolean isEmpty();
+	
+	
+	enum NULL implements CardSource {
+	INSTANCE;
+		public boolean isEmpty(){return true;}
+		public Card draw(){
+			assert !isEmpty();
+			return null;
+		}
+	}
+	}
+```
+
+##### Esempio di uso di NullObject
+```java
+Card draw(){
+if(isEmpty())
+	return null;
+else
+	return internal.remov
+}
+```
+
+
+### Mocking
+`Test Double` 
+Il doppione (non intende doppia precisione).
+Il doppione viene creato quando necessitiamo di un sostituto del DOC -> dependent on component che:
+- è ancora in fase di sviluppo
+- fornisce dati non deterministici o prevedibili
+- può presentare situazioni non facilmente riproducibili (tipo errori di trasmissione o esaurimento di memoria)
+- la funzione è lenta
+-  o semplicemente se si vuole testare il SUT -> System under test senza correre il rischio che il DOC introduca errori.
+
+- ##### Dummy objects
+	Sono oggetti passati in giro ma mai veramente usati quando:
+	- non posso passare null
+	- potrei avere solo una interfaccia e non una classe
+	- potrei avere solo costruttori complessi
+	Non mi interessano tutti i valori dati a questo oggetto, ne creo quindi uno fittizio.
+- ##### Stub Objects
+	Oggetti che forniscono delle risposte preconfezionate alle sole chiamate fatte durante il testing
+- ##### Spy Objects
+	Si prende un oggetto esistente e lo si circonda, wrappandolo, con oggetti che ne permettano l'utilizzo come mock
+- ##### Fake objects
+	Non potrò mai usarli in produzione (esempio database), utili quando sfrutto per poco tempo le capacità del codice, non sono da costruire ma sono già presenti.
+	Inefficiente per casi troppo grandi.
