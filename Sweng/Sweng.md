@@ -456,10 +456,6 @@ violazione dell'incapsulation, porta alla bocciatura diretta (kek)
 
 
 ### Immutabilità
-8
-
-
-
 
 # Lezione_9
 
@@ -514,3 +510,5 @@ Non è di norm leggibile ma molto riconoscibile.
 
 ### Iterator pattern
 Permette di accedere agli elementi di un oggetto aggregatore in maniera sequenziale senza dover esporre la rappresentazione interna.
+
+
