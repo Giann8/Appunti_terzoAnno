@@ -477,7 +477,7 @@ else
 ```
 
 
-### Mocking
+## Mocking
 `Test Double` 
 Il doppione (non intende doppia precisione).
 Il doppione viene creato quando necessitiamo di un sostituto del DOC -> dependent on component che:
@@ -500,3 +500,19 @@ Il doppione viene creato quando necessitiamo di un sostituto del DOC -> dependen
 - ##### Fake objects
 	Non potrò mai usarli in produzione (esempio database), utili quando sfrutto per poco tempo le capacità del codice, non sono da costruire ma sono già presenti.
 	Inefficiente per casi troppo grandi.
+
+### Mockito
+Esempi: (da mettere)
+
+#### Stubbing
+```java
+when(mockedObj).methodname(args).thenXXX(values);
+```
+```java
+doXXX(values).when(mockedObj).methodname(args)
+//funziona con metodi che ritornano void
+```
+
+#### Chain of responsibility
+Mi permette di togliere da una classe una certa responsabilità, devo avere la possibilità
+Nel chain of responsibility il cliente conosce solo la cima della catena non il resto.
