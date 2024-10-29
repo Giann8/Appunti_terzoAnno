@@ -239,7 +239,7 @@ Dove scrivere della presenza delle eccezioni?
 
 Elenco in EFF, tu puoi darmi qualsiasi cosa in ingresso ma farò qualcosa di diverso (sollevare un’eccezione) in caso mettessi qualcosa di sbagliato (”non req”), eventuali effetti collaterali (modifiche) devono essere specificati poiché possibilmente distruttivi. 
 
-## A. Data
+## Astrazione dei Dati
 
 Info→ rappresentazione
 
