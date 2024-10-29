@@ -80,18 +80,18 @@ con entrambi si arriverà comunque ad ottenere un programma funzionante.
         - `Rigidità`: Stima dei costi e valutazione dei rischi vengono fatti all’inizio e non quando ho capito bene il problema, resto così rigido congelando i sotto-prodotti e perdendo la flessibilità richiesta.
         - `Monoliticità`: poiché la pianificazione è orientata ad un singolo rilascio, ciò però ci porta ad un aumento dei costi e a sforare i tempi di consegna. (contraddice quindi la realizzazione di un software modificabile ed evolubile, inoltre la manutenzione viene fatta solo sul codice)
         
-        ![Screenshot 2024-10-15 alle 10.33.04.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8966f6ff-4fda-4cfd-93a6-676a9ac4742e/c49c1dd1-1782-40bf-81c2-2394e02f982f/Screenshot_2024-10-15_alle_10.33.04.png)
+		![image info](../Images/Modello_a_cascata.png)
         
     - **Modello a V (dente di pesce cane):** una delle varianti del modello a cascata, introduce una più estesa fase di testing. Nonostante sia sempre un modello sequenziale presenta dei nuovi legami tra le fasi di sviluppo corrispondenti alle attività di verifica e convalida. Va ad accentuare il rapporto con il cliente, coinvolto con la richiesta di feedback per ciascun sottoprodotto generato. Le nuove attività introdotte sono definite quindi come:
         - `verifica`: va a controllare la correttezza rispetto alla descrizione formale delle specifiche;
         - `convalidazione`: controlla, attraverso un feedback continuo, la compatibilità con le esigenze del cliente.
         
-        ![Screenshot 2024-10-15 alle 10.36.22.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8966f6ff-4fda-4cfd-93a6-676a9ac4742e/43851789-7dab-404d-bcc4-44b6b38a3837/Screenshot_2024-10-15_alle_10.36.22.png)
+        ![image info](../Images/v-model.png)
         
 - **Modelli iterativi**: ottenuto sapendo che la sequenzialità stringente delle fasi rappresenta un grosso limite, si pensa di far ripetere alcune fasi più di una volta con dei cicli fino all’ottenimento di un prodotto worth.
     - **Modello a cascata con singola retroazione:** Come il modello a cascata ma presenta una fase di testing e permette agli sviluppatori di poter ritornare al passo precedente, arrivati però al prodotto non possiamo tornare indietro per la manutenzione e l’introduzione stessa di un’iterazione renderebbe molto difficile la pianificazione del lavoro e il monitoraggio dell’avanzamento. Un’altra criticità è la possibilità di avere un problema non nel punto precedente ma direttamente all’inizio (**Condiviso da molti modelli iterativi**)
         
-        ![Screenshot 2024-10-15 alle 10.42.04.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/8966f6ff-4fda-4cfd-93a6-676a9ac4742e/e5fd0f8d-657f-4bd5-b862-b7983aba0761/Screenshot_2024-10-15_alle_10.42.04.png)
+		![image info](../Images/waterfall-retroazione.png)
         
 - **Modello prototipale:**  Si divide in pubblico e privato, lo creo per parlare con il cliente, per far vedere al cliente il funzionamento (grezzo) del software, permette di ridurre significativamente i requisiti e errori di design soprattutto riguardanti l’interfaccia utente:
     - Il `modello pubblico` viene mostrato al cliente, comporta dei rischi nella futura gestione del codice poiché può portare il cliente a richiedere nuove funzioni, ci permette di far compiere scelte all’utente; `non sto consegnando il progetto ma lo sto mostrando`;
@@ -110,14 +110,22 @@ con entrambi si arriverà comunque ad ottenere un programma funzionante.
             - non abbiamo tempo di avere feedback dall’utente.
     
     - **Modello a fontana**: nel modello a fontana, in caso di problemi si riparte dal primo passaggio (ovvero la definizione dei requisiti)  senza però andare ad eliminare il lavoro svolto. Cerco infatti il punto più “indietro” che viene influenzato dal problema, così da poterlo correggere, in questo modello non congeliamo il prodotto in uso (che può provocare problemi) ma lo lascio lavorare permettendomi di arrivare ad una eventuale manutenzione o evoluzione dello stesso.
+	
+	![image info](../Images/02_fountain-model.png)
+	
     - **modello a flipper**: è un processo non definito, può essere svolto qualunque passo, è un modello creato come critica ai modelli incrementali, i vari punti in cui rimbalza la pallina rappresentano una fase, non ho quindi il controllo del mio progetto.
+    ![image info](https://marcobuster.github.io/sweng/assets/02_pinball-life-cycle.png)
     
 - **Modelli trasformazionali**: cercano di mantenere sotto controllo tutti i passi e i procedimenti in modo formale; partendo da specifiche spiegate in modo informale (dal cliente) otteniamo come risultato un prototipo (diverso dal concetto di prototipo precedentemente definito) che differisce per efficienza e completezza dal prodotto finale, inoltre tali passi devono essere dimostrabili formalmente come corretti. In caso il passo non fosse corretto, ovvero nel caso arrivassi ad un vicolo cieco, posso tornare un passo indietro scegliendo una nuova strada (viene utilizzato soprattutto per progetti molto piccoli con caratteristiche molto rigide); le prove di correttezza utilizzate possono essere riutilizzate che vengono mantenute in un repo apposito.
+	![image info](https://marcobuster.github.io/sweng/assets/02_transformational-models.png)
     - **MetaModello a spirale**: non è propriamente un modello bensì un framework/pattern in cui possono essere inquadrati altri modelli. è di tipo incrementale ed è guidato da un’analisi dei rischi (diminuisce il costo? è fattibile in questo quantitativo di tempo?) ovvero su cosa possiamo fare in caso di un certo rischio. Si dice a spirale poiché (*aggiungere immagine*) caratterizzata da quattro fasi principali: 1. Determinare gli obiettivi 2. identificare e risolvere i rischi 3. Sviluppo e testing 4. pianificazione dell'iterazione. Il raggio della spirale indica il costo cumulativo del progetto.
+	    ![image info](https://marcobuster.github.io/sweng/assets/02_spiral-model.png)
 		
         - **Variante Win-WIn**: questa variante prende in considerazione anche i rischi contrattuali che possono esserci con i clienti, problemi quindi di comunicazione che necessitano di contrattazioni e negoziazione. Entrambe le parti, quindi, vincono attraverso questa variante.
-    
+        
+	    ![image info](https://marcobuster.github.io/sweng/assets/02_win_win.png)
     - **Modello COTS (Component Off The Shelf)**: (*ci sono per caso funzionalità/componenti già presenti? magari utilizzati in progetti vecchi o in progetti di altre persone/aziende*) si parte dalla disponibilità interna o sul mercato di moduli pre-esistenti, non riusciremo a creare un progetto formato solo da moduli preesistenti ma ciò ci permette di di non dover partire *pefforza* da zero. Dobbiamo però basarci su altre attività (vedi appunti corso). Anche la prontezza della risposta rispetto ad alcuni problemi va a favore o contro all'adozione di tali componenti.
+    ![image info](https://marcobuster.github.io/sweng/assets/02_cots.png)
 
 - Metodi agili: (Ci si concentra sull’extreme programming, nascono dagli sviluppatori stessi)
 	Utilizzano il manifesto dei metodi agili che indica i componenti fondanti dell'XP:
@@ -164,15 +172,44 @@ Principi:
 | Accettare il cambiamento                                             | anticipazione del cambiamento |
 | Modifica incrementale                                                | generalità                    |
 | Lavoro di qualità                                                    | incrementalità                |
+
 Grazie all'extreme programming il costo di nuove modifiche sarà si alto inizialmente, ma tenderà a stabilizzarsi con l'aumentare della quantità di tempo impiegato sul progetto, questo poiché il tempo verrà usato soprattutto su operazioni di refactoring che permetteranno di mantenere la semplicità e la pulizia del codice e facilitando future implementazioni.
 Ciò è diverso dalla correzione di errori che ovviamente aumenterà le tempistiche del progetto (Ci vuole coraggio per fare il refactoring poiché andiamo a toccare una parte di codice che funziona).
 
+---
+# Lezione 4
+## Figure in gioco e responsabilità 
 
-## Figure in gioco e responsabilità
+Il manager/cliente ha la responsabilità di decidere portata, priorità tra funzioni e date dei rilasci mentre ha il diritto di sapere cosa può essere fatto, di vedere i progressi nel sistema e di cambiare idea.
 
-Il manager/cliente ha la responsabilità di decidere portata, priorità tra funzioni e date dei rilasci mentre ha il diritto di sapere cosa può essere fatto, di vedere i progressi nel sistema e i cambiare idea.
+Lo sviluppatore deve stimare i tempi per le singole funzionalità, le conseguenze delle scelte tecnologiche e una pianificazione dettagliata, ha il diritto di sapere cosa è necessario attraverso requisiti chiari; ha il diritto di cambiare le stime dei tempi in base all'esperienza acquisita e di produrre un software di qualità. Deve inoltre identificare eventuali funzionalità pericolose per il successo del progetto (se una funzione viene messa in secondo piano dal cliente ma si rivela essere il punto fondante del progetto stesso.) 
+Tra gli sviluppatori è presente un `Tracker`, figura alternata tra i componenti del team di sviluppo che va a misurare velocità, quantità di bug trovati ed altri elementi che possano permettere di avere una visione completa riguardo all'avanzamento dell'iterazione (ovvero dello sviluppo) consentendo al team di rimanere sempre aggiornato.
 
-Lo sviluppatore deve stimare i tempi per le singole funzionalità, le conseguenze delle scelte tecnologiche e una pianificazione dettagliata, ha il diritto di sapere cosa è necessario attraverso requisiti chiari, cambiare le stime dei tempi con esperienza, identificare e indicare le funzionalità pericolose ed infine produrre software di qualità
+1. **Planning Game**:
+	in questa fase vengono determinate le funzionalità  del rilascio successivo, andando a combinare valutazioni tecniche (tempistiche e capacità degli sviluppatori) insieme alle priorità commerciali. Per questo planning game il cliente utilizzerà delle carte dove saranno presenti frase di descrizione, scenario d'uso e test di accettazione successivamente gli sviluppatori faranno una stima dei tempi e dei costi per implementare tali feature. Attraverso queste info il `manager` deciderà quali implementare e quali no in base ad alcuni vincoli (i tempi non devono superare 400 ore mentre devo massimizzare il valore ).
+	**`Come faccio le stime?`** da un lato è buono fare una stima a gruppi dall'altro in extreme programming dobbiamo avere il consenso per tutti quelli del team.
+	- stime molto differenti: si cerca di trovare un accordo nel team
+	- Stime simili ma molto alte: si parla con il cliente per poter suddividere la feature in parti minori
+	- nessun accordo tra le stime ma sono simili: devo trovare una `stima condivisa` che non sia pessimista
+	**Stime condivise:**
+	- Il primo problema è la perdita di tempo per la troppa comunicazione
+	- Effetto ancora:
+		l'ancora è un valore che va ad influenzare le altre persone nella stima
+	**Stime agili: Planning poker**
+		Vengono presentate le carte, i developer possono quindi fare domande e chiarire assunzioni e rischi con i clienti.
+		Date tutte le carte queste vengono scelte e girate contemporaneamente, così che la probabilità di avere un'ancora sia molto bassa, successivamente si esprimono le proprie stime e chi ha dato quelle più basse o più alte spiegano le loro motivazioni; si ripete ciò fin quando non arriviamo ad un accordo unanime.
+	**Team Estimation Game:**
+	1.  **Prima fase:**
+		Si fa una pila con le "storie" e il primo developer sceglie dove mettere la carta sinistra (facile) destra (difficile) o sotto (equivalente), quello successivo sposta una carta già presente o ne sceglie un'altra e così via
+	2. **Seconda fase:**
+		Ci si rimette in coda davanti al tavolo e si ha un mazzo di carte tipo quello del planning poker, la prima carta si mette sulla prima colonna(prima carta è di solito di valore 2), il primo developer prende la prima carta e la posiziona sulla colonna del valore che pensa possa avere. Il developer successivo, come nella prima fase, prende un'altra carta o sposta quelle già messe altrimenti (se non ci sono carte) passa.
+	3. **Terza fase:**
+		Si va a stimare il tempo (ore/uomo) di una delle carte più semplici (di valore 2) e le altre stime saranno calcolate proporzionalmente.
+		**Velocity**: capacità del team di completare certi lavori, va a sostituire la necessità di ri-mappare unità ideali in tempi assoluti, dopo aver completato la prima iterazione il team dirà di poter sviluppare tanti punti quanti erano quelli fatti nell'iterazione precedente.
+		>[!Attenzione] 
+		>- Non è un metro di valutazione del team
+		>- Non si devono considerare storie non finite
+		>- Non deve essere imposta
 
 ## Raggruppare per fasi
 
@@ -369,9 +406,58 @@ Per proteggersi da checkin di una versione non funzionante possiamo automatizzar
 ### Gradle
 pensato per la definizione di scripting, utilizzato per builds multi progetto, va a definire un linguaggio specifico per le dipendenze.
 
+### Plugin
+
+---
 ## Interfaccia e polimorfismo
 
-# Lezione 9
+# Lezione_8
+## `Bug tracking`
+
+Tengono traccia e gestiscono tutte le segnalazioni  sui difetti di un software.
+Hanno centralizzato le segnalazioni in modo tale da impedire il moltiplicarsi delle stesse. 
+Il bug tracking era molto difficile sopratutto considerando il modello a cascata (poiché privo di backtracking).
+Il concetto principale dei bug tracker è appunto la segnalazione o comunque la comunicazione tra vari developer riguardo possibili bug.
+
+### Bug workflow e ciclo di vita (simile a FSM)
+
+  
+![image info](../Images/06_bug-workflow.png)
+
+### Unified Process
+
+### Best practice
+
+- Sviluppare iterativamente
+- Gestire i requisiti
+- Usare a
+
+
+## Progettazione
+
+### Refactoring
+Come già detto quando andiamo a fare il refactoring del codice non dobbiamo modificare il funzionamento delle feature presenti (fase invisibile al cliente) e inoltre non possiamo aggiungere dei test rispetto alla fase verde appena raggiunta.
+
+### Design Knowledge
+Dove la salviamo? 
+0. in memoria
+1. nei documenti di design (scritti in linguaggio naturale)
+2. le piattaforme di discussione
+3. UML
+4. nel codice stesso
+
+### Come condividiamo
+0. metodi
+1. design pattern
+2. principi, a cui punteremo molto nel corso.
+
+### Reference Escaping (trucco napoletano)
+violazione dell'incapsulation, porta alla bocciatura diretta (kek)
+
+
+### Immutabilità
+
+# Lezione_9
 
 ### Interface segregation
 ### Collegamento dinamico ed extensibility
@@ -424,6 +510,7 @@ Non è di norm leggibile ma molto riconoscibile.
 
 ### Iterator pattern
 Permette di accedere agli elementi di un oggetto aggregatore in maniera sequenziale senza dover esporre la rappresentazione interna.
+
 
 # Lezione_10
 
