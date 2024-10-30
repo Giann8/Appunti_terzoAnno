@@ -603,3 +603,32 @@ doXXX(values).when(mockedObj).methodname(args)
 #### Chain of responsibility
 Mi permette di togliere da una classe una certa responsabilità, devo avere la possibilità
 Nel chain of responsibility il cliente conosce solo la cima della catena non il resto.
+
+```java
+public @NotNull PokerHand.HandRank handEvaluator(@NotNull PokerHand pokerHand) {
+if (isATris(pokerHand))
+	return PokerHand.HandRank.THREE_OF_A_KIND;
+return next.handEvaluator(pokerHand);
+}
+```
+
+# Lezione_11
+## Duck_saga
+#### Pattern strategy
+Abbiamo una famiglia di algoritmi/funzioni, il pattern li rende quindi intercambiabili tra loro tramite encapsulation (posso usare o uno o l'altro)
+### Adapter Pattern
+
+#### Class adapter
+
+#### Object adapter
+
+## Facade pattern
+fornisce un'interfaccia unificata e semplificata a un insieme di interfacce separate
+#### Composite Pattern
+Gestisce strutture ad albero per rappresentare gerarchie di parti e insieme uniformemente
+Pattern nati durante la creazione di GUI
+
+#### Decorator Pattern
+aggiungere nuove funzionalità o caratteristiche dinamicamente 
+##### Card decorator
+    
