@@ -216,3 +216,17 @@ Milano: 194.24.0._ -> 194.24.7._ ha segnato 2048 indirizzi
 ##### NAT {RFC 3022}
 La rete presenta un IP privato e un IP pubblico.
 L'indirizzo pubblico è quello che viene utilizzato, necessitiamo quindi di qualcosa che possa trasformare un IP pubblico in privato e viceversa; entra quindi in gioco il nat che si frappone tra internet privato e pubblico (unico).
+
+Ricevo un pacchetto, guardo da dove è arrivato, sostituisco il sorgente privato con l'IP address pubblico.
+Questo è utile e necessario poiché sono indirizzi utilizzabili da tutti, quando il NAT riceve un messaggio va a cercare nella sua tabella se l'indirizzo privato sia o no presente e associato ad un indirizzo NAT
+
+Configuro il NAT a crearsi una entry a tutte le sue tabelle che apra tutte le porte ai server a cui è collegata.
+
+##### ARP
+Classificato fra i protocolli di livello 3.
+Deve inviare un segnale a tutti i device quindi in broadcast, inviando così un'arp-request si riceverà (anch'essa in broadcast) una arp-reply che permetterà di associare la cache di tutti i dispositivi e del router stesso.
+- ##### Proxy-arp
+	è una funzione che sta dentro a tutti i gateway che vede arrivare le arp request rispondendo poi al posto dell'host esterno
+
+
+Il broadcast su una rete magliata risulta impossibile, devo stare attento ad evitare i loop per poterlo fare senza cicli. Costruisco quindi lo spanning tree, l'albero dei cammini minimi che va a collegare tutte le sottoreti evitando i cicli. Quello con IP minore fa da router gli altri da foglie, hanno tutti due porti, una rooot (che dirige verso la root)
