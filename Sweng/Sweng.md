@@ -206,11 +206,35 @@ Tra gli sviluppatori è presente un `Tracker`, figura alternata tra i componenti
 	3. **Terza fase:**
 		Si va a stimare il tempo (ore/uomo) di una delle carte più semplici (di valore 2) e le altre stime saranno calcolate proporzionalmente.
 		**Velocity**: capacità del team di completare certi lavori, va a sostituire la necessità di ri-mappare unità ideali in tempi assoluti, dopo aver completato la prima iterazione il team dirà di poter sviluppare tanti punti quanti erano quelli fatti nell'iterazione precedente.
+2. **Brevi cicli di rilascio**
+	Rilascio diverse versioni del software in modo da diminuire eventuali rischi e problemi che possiamo avere in corso d'opera, devono comunque essere rilasci significativi decisi dal manager.
+
+
+
 		>[!Attenzione] 
 		>- Non è un metro di valutazione del team
 		>- Non si devono considerare storie non finite
 		>- Non deve essere imposta
-
+3. **Uso di metafora (poco usato)**
+	Trovo un elemento diverso sul quale mappare i vari elementi del programma 
+4. **Semplicità di progetto**
+	Massimizzare il lavoro non fatto (se ho un pezzo di codice che uso più volte non andrò a copiarlo e incollarlo ma creerò una funzione, così da dover cambiare il codice una sola volta)
+5. **Testing**
+	Dobbiamo ideare i test prima di scrivere il codice, scrivendo dei test abbiamo la sicurezza che il codice funzioni; ciò può essere utile anche per programmatori che non hanno mai visto quella parte di codice.
+6. **Refactoring**
+	Fatto per `Incremento` e `Semplificazione` 
+7. **Programmazione a coppie**
+	Aiuta nella maggior parte del lavoro, dal controllo continuo del rispetto delle regole XP al refactoring, diminuisce in caso la quantità di codice prodotto ma aumenta la quantità concedendo quindi un aumento del guadagno.
+8. **Proprietà collettiva**
+	La responsabilità di ogni cambiamento non è della singola persona ma dell'intero team, dobbiamo sentirci responsabilizzati sull'intero codice anche se non conosciamo tutto alla stessa maniera.
+9. **Integrazione continua**
+	Bisogna avere una veloce frequenza di integrazione e aggiornamento, quando viene risolto un problema bisogna risolvere anche i problemi di integrazione
+10. **Settimana di 40 ore**
+	Con un quantitativo di ore di lavoro non eccessivo i programmatori lavorano meglio grazie ad un buon rapporto vita/lavoro.
+11. **Cliente sul posto**
+	Permette una fase di specifica leggera e fornisce informazioni in tempo reale riguardo nuove funzioni o plug in.
+12. **Standard di codifica**
+	Uno standard deciso tra i componenti del team per aiutare nella comprensione del codice, semplificando refactoring, lavoro a coppie e proprietà collettiva.
 ## Raggruppare per fasi
 
 - Requirements:
