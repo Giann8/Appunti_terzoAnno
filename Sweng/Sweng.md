@@ -235,6 +235,12 @@ Tra gli sviluppatori è presente un `Tracker`, figura alternata tra i componenti
 	Permette una fase di specifica leggera e fornisce informazioni in tempo reale riguardo nuove funzioni o plug in.
 12. **Standard di codifica**
 	Uno standard deciso tra i componenti del team per aiutare nella comprensione del codice, semplificando refactoring, lavoro a coppie e proprietà collettiva.
+13. **Just loose (?)(non piace al bellettini)**
+	Le regole sopra citate sono solo di riferimento non universali, possiamo considerarle tutte, solo alcune o nessuna. (non farlo all'esame).
+
+
+---
+# Lezione_5
 ## Raggruppare per fasi
 
 - Requirements:
@@ -255,8 +261,8 @@ Tra gli sviluppatori è presente un `Tracker`, figura alternata tra i componenti
 
 ## Documentazione
 
-La documentazione cartacea non è necessaria.
-
+Bisogna cercare di scrivere codice che non abbia bisogno di commenti.
+è qualcosa di volatile che può portare a un disallineamento, la fonte principale di documentazione deve quindi essere il codice stesso, scritto in modo leggibile grazie agli standard di codifica, ma soprattutto dai test.
 ## Quando non possiamo usare xp?
 
 In ambienti che impediscono l’uso di anche un solo approccio utilizzato,
@@ -269,6 +275,35 @@ In ambienti che impediscono l’uso di anche un solo approccio utilizzato,
 
 Il rapporto tra numero di persone che lavorano e tempo si pensa essere proporzionale, ovvero all’aumento del numero di persone diminuisce il tempo che esse devono impiegare per programmare i loro pezzo di codice, ovviamente ciò è sbagliato a causa dell’**overhead** che va ad impedire una corretta comunicazione impattando la gestione dei ritardi.
 
+## Open Source
+- Cattedrale e il Bazaar
+	Prende come punto di partenza la frenesia di uno sviluppatore pronto a programmare, egli chiede ad amici o colleghi, trovando qualcuno con problemi simili o lo stesso problema ma non trovano soluzioni, si ha quindi uno scambio di pareri tra le persone interessate e quelle che intendono spendere risorse (ovvero tempo) in questo progetto danno il via ad un prototipo informale. Ciò porta ad ottenere una prima versione del software che, dopo essere stato presentato, permetterà di ottenere informazioni e consigli da persone esterne.
+	
+	
+- Care and feeding of FOSS
+	1. Invention: Qualcuno presenta un'idea e la si fa lavorare
+	2. Expansion and Innovation: il mondo se ne accorge e la tecnologia inizia a prendere piede.
+	3. Consolidation: Alcuni progetti diventano dominanti mentre gli altri vengono assorbiti al loro.
+	4. Maturity: mercato ridotto a pochi prodotti dominanti, difficile per nuove aziende dello stesso tipo di entrare nel mercato
+	5. FOSS Domination: con il rallentamento dell'innovazione la community FOSS va a erodere la leadership detenuta dalle soluzioni commerciali.
+	6. The FOSS era: Le versioni FOSS dominano su quelle a pagamento.
+	
+	
+- Emerging Economic Paradigm of Open Source:
+	Tutto ciò che mi permette di diminuire i costi è "buono".
+	Distinguiamo due tipi di tecnologie ovvero quella `Differenziante`, che mi da un vantaggio competitivo, e quella `Non differenziante`.
+	
+	
+Nel mondo Open Source vari problemi diventano enormi:
+- modello a cascata: fase a se stante, dopo aver sviluppato tutti i componenti li compiliamo insieme
+- modello microsoft: alla fine di ogni giornata, ogni sviluppatore che ha scritto un certo numero di linee di codice, doveva garantire che quel codice poteva essere ricompilato a tutto il resto con obiettivo di sincronizzare e stabilizzare il tutto, chi causava il fallimento della compilazione veniva linciato (joke ma non del tutto).
+- modello XP: più volte al giorno escludendosi a vicenda
+- FLOSS: Continuamente e senza coordinazione e controllo, ciò può portare ad avere un prodotto totalmente diverso da un giorno all'altro.
+
+Come facciamo con la comunicazione? Attraverso strumenti specifici di supporto
+
+---
+# Lezione_6
 ## Strumenti di supporto
 
 Vanno dalla comunicazione: quindi internet o forum, alla sincronizzazione del lavoro e versioning fino all’automazione della build e al bug tracking.
