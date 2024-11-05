@@ -196,8 +196,8 @@ Gli Indirizzi IP sono divisi in diverse categorie ma principalmente abbia:
 	- Classe E
 	La differenza tra questi si ha da A -> C, infatti scendendo di classe diminuirà la quantità di hostId presenti, meno HostId = molti più NetId presenti in rete.
 Problema di queste classi è lo spreco che si andrebbe ad ottenere a causa della staticità dei blocchi.
-Ci sono due modi per andare a risolvere questo problema:[[
-]]1. organizzativo tramite **_Subnetting_**, va ad eliminare totalmente l'idea di organizzazione iniziale
+Ci sono due modi per andare a risolvere questo problema:
+1. organizzativo tramite **_Subnetting_**, va ad eliminare totalmente l'idea di organizzazione iniziale
 2. Operativo:
 	1. **_NAT_**
 	2. **_CIDR_**: (Class-Less Intern Domain Routing)
@@ -222,6 +222,18 @@ Questo è utile e necessario poiché sono indirizzi utilizzabili da tutti, quand
 
 Configuro il NAT a crearsi una entry a tutte le sue tabelle che apra tutte le porte ai server a cui è collegata.
 
+```mermaid
+	graph LR
+	200DS([destinazione del flusso, server])
+	id1(NAT)
+	macchina_1 --> id1
+	macchina_2 --> id1 
+	id1 --> 200
+	200 <--> 200DS
+```
+
+
+Se il server sta dietro al NAT devo mappare ciò che arriva dall'esterno su un IP preciso per il server.
 ##### ARP
 Classificato fra i protocolli di livello 3.
 Deve inviare un segnale a tutti i device quindi in broadcast, inviando così un'arp-request si riceverà (anch'essa in broadcast) una arp-reply che permetterà di associare la cache di tutti i dispositivi e del router stesso.
@@ -229,4 +241,87 @@ Deve inviare un segnale a tutti i device quindi in broadcast, inviando così un'
 	è una funzione che sta dentro a tutti i gateway che vede arrivare le arp request rispondendo poi al posto dell'host esterno
 
 
-Il broadcast su una rete magliata risulta impossibile, devo stare attento ad evitare i loop per poterlo fare senza cicli. Costruisco quindi lo spanning tree, l'albero dei cammini minimi che va a collegare tutte le sottoreti evitando i cicli. Quello con IP minore fa da router gli altri da foglie, hanno tutti due porti, una rooot (che dirige verso la root)
+Il broadcast su una rete magliata risulta impossibile, devo stare attento ad evitare i loop per poterlo fare senza cicli. Costruisco quindi lo spanning tree, l'albero dei cammini minimi che va a collegare tutte le sottoreti evitando i cicli. Quello con IP minore fa da router gli altri da foglie, hanno tutti due porti, una root (che dirige verso la root)
+
+
+# 5/11/2024
+## ICMP
+```mermaid
+graph LR
+D_CC([Un nodo controlla sempre la sua congestione,\ninvia un choke packet all'IP \nsorgente per rallentarlo])
+D_VR([Ping ed echo\ncontrollo che ci sia qualcosa che riceve])
+ICMP-->verifica_raggiungibilità-->D_VR
+ICMP-->controllo_di_congestione-->D_CC
+```
+## Seconda funzionalità strategica del livello 3
+molto simile al livello 2, unica differenza è che la tabella viene popolata da frame con una funzione di routing che acquisisce conoscenza sulla rete così da poter capire quale sia la porta di output migliore
+
+Due tecniche:
+1. distance vector
+2. link state
+
+
+### Distance vector
+I nodi, con questa tecnica, posso costruire le proprie tabelle di instradamento tenendo anche conto della congestione di rete 
+
+```mermaid
+graph LR;
+A<-->B
+A<-->E
+B<-->C & D
+C<-->D
+D<-->E
+```
+(Tabella non uguale a quella delle lezioni, può confondere)
+Tabelle delle adiacenze:
+#### A
+
+| R   | L   | C   |
+| --- | --- | --- |
+| B   | 1   | 3   |
+| E   | 6   | 2   |
+#### B
+| R   | L   | C   |
+| --- | --- | --- |
+| A   | 1   | 3   |
+| C   | 2   | 4   |
+| D   | 3   | 3   |
+#### C
+| R   | L   | C   |
+| --- | --- | --- |
+| B   | 2   | 4   |
+| D   | 4   | 3   |
+In ogni nodo possiamo aggiungere anche un nodo che non si collega (A L = 0 C = 0 in questo caso)
+Distance vector di **A**
+
+| B   | 3   |
+| --- | --- |
+| E   | 2   |
+Distance vector di B
+
+A | 3
+--|-
+C | 4
+D | 3
+`Se A riceve il DVB?`
+Scopre che esistono un C e un D da qualche parte, non conosce come B possa arrivarci ma gli permette di creare una tabella di routing
+
+| RA  | L   | C   |
+| --- | --- | --- |
+| B   | 1   | 3   |
+| E   | 6   | 3   |
+| C   | 1   | 7   |
+| D   | 1   | 6   |
+
+A va ad aggiornare la tabella di routing migliorando la raggiungibilità dei nodi
+Quando un nodo rileva un guasto su un certo link diventa irraggiungibile (Esempio B L=2 e C infinito)
+```mermaid
+graph TD
+t0([A 1,2 ; B 2,1 ; C 3,2 ; E 6,3])
+t1([B 2, infinito])
+t2([Dva 2C])
+t3([A 1,2 ; B 1,3])
+t0--B_rileva_guasto -->t1
+t1--t2-->t2
+t2--t3-->t3
+```
