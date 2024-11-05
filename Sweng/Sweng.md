@@ -522,7 +522,7 @@ violazione dell'incapsulation, porta alla bocciatura diretta (kek)
 ### Collegamento dinamico ed extensibility
 Permette di chiamare codice non ancora scritto, così facendo non serve modificare il codice per permettergli di richiamare metodi di una nuova classe (da qui extensibility)
 
-### Esempiop di diagramma delle classi UML
+### Esempio di diagramma delle classi UML
 tutti gli elementi presenti all'interno dell'interfaccia devono essere astratti.
 - classi
 	- attributi
@@ -546,26 +546,98 @@ Sono situazioni comuni che posso ritrovare nei pattern:
 Identifica due metodi:
 - **HookMethod**: determina il comportamento specifico nelle sottoclassi, il _punto caldo_ in cui posso intervenire per personalizzare e/o adattare lo schema;
 - **TemplateMethod**: mette insieme diversi punti caldi (scheletro), è l'_elemento freddo_ ovvero quello che non varia;
+```mermaid
+graph
+id1(meta-patterns)
+id1.1(HookMethod)
+id1.2(TemplateMethod)
+id1 --divisi_in--> id1.1 & id1.2
+id1.2 --scheletro_dei--> id1.1
+```
 
 _`Come si relazionano?`_
 
 - **Unification**: si trovano nella stessa classe del framework
-- **Connection**: quando sono in classi separate che vengono collegate tramite una associazione.
-- **Recursive Connection**:sono in classi tra loro collegate anche tramite relazione di gerarchizzazione.
+- **Connection**: quando sono in classi separate che vengono collegate tramite una associazione; la classe hook(astratta) viene chiamata come istanza nella classe template.
+- **Recursive Connection**: sono in classi tra loro collegate anche tramite relazione di gerarchizzazione: classe template è una hook class.
+
+``` mermaid
+classDiagram
+	TemplateHookClass:hookMethod()
+	TemplateHookClass:templateMethod()
+	TemplateClass:templateMethod()
+	HookClass:hookMethod()
+	TemplateClass --|> HookClass
+	TemplateClass *--> HookClass
+	
+```
 
 Abbiamo tre categorie principali di pattern:
 - **Creazionali**: risolvono problemi attraverso la creazione di oggetti
 - **Comportamentali**: problemi di dinamicità dell'interazione tra oggetti
 - **Strutturali**: problemi riguardanti la struttura statica delle classi/oggetti.
+```mermaid
+	graph LR
+	Pattern --> Creazionali & Comportamentali & Strutturali
+		Creazionali --> Creano_oggetti
+		
+		Comportamentali-->Interazione_tra_oggetti
+		
+		Strutturali-->Composizione_di_classi_e_oggetti
+```
 
 
-#### Singleton Pattern
+### Singleton Pattern
 Utilizzano solo oggetti e non classi cercando di rendere la classe responsabile del fatto che non può esistere più di una istanza.
 è Teoricamente giusto
 
+```java
+public class Singleton {
+/* costruttore privato o comunque non pubblico*/
+protected Singleton(){...}
+
+/* salvo l'istanza per usarla dopo*/
+private static Singleton instance = null;
+
+/*metodo statico*/
+public static Singleton getInstance(){
+if(instance == null) {
+instance = new Singleton();
+}
+return instance;
+}
+
+public void metodoIstanza(){...}
+}
+```
+Utilizzo Double Check per poter evitare che si creino più copie dell'istanza (per via di processi concorrenti) e mantenendo alte le prestazioni che calerebbero con il solo utilizzo di `@Synchronized`.
+
+```java
+public class Singleton {
+/* costruttore privato o comunque non pubblico*/
+protected Singleton(){...}
+
+/* salvo l'istanza per usarla dopo*/
+private static Singleton instance = null;
+
+/*metodo statico*/
+public static Singleton getInstance(){
+if(instance == null) {
+	synchronized(Singleton.class){
+	if (instance == null)
+		instance= new Singleton();
+	}
+}
+return instance;
+}
+
+public void metodoIstanza(){...}
+}
+```
 #### Singleton Java Idiom
-Questo va a sfruttare che i campi degli enumerativi possono essere creati tramite degli oggetti costanti creati al momento del loro primo uso. è definito Idioma poiché soluzione dipendente da uno specifico linguaggio.
-Non è di norm leggibile ma molto riconoscibile.
+Gli idiomi vengono creati in modo differente per ogni linguaggio, in java utilizziamo `enum`, un enumerativo che ha come unico valore l'istanza; ciò permette (come nei singleton) di andare a creare una sola istanza  a cui dovranno accedere tutti. è inoltre thread safe, poiché la concorrenza viene gestita internamente da java.
+è definito Idioma poiché soluzione dipendente da uno specifico linguaggio.
+Il Singleton deve però essere usato con cautela poiché viola alcuni dei principi `SOLID` e può essere sostituito da altri elementi in base alla circostanza.
 
 ### Iterator pattern
 Permette di accedere agli elementi di un oggetto aggregatore in maniera sequenziale senza dover esporre la rappresentazione interna.
