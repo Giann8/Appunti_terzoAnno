@@ -765,5 +765,84 @@ Pattern nati durante la creazione di GUI
 
 #### Decorator Pattern
 aggiungere nuove funzionalità o caratteristiche dinamicamente 
-##### Card decorator
-    
+##### Card decorator(esempio)
+Possiamo considerare decorator un draw che printa le carte pescate.
+
+# Lezione_13
+(nella lezione 12 sono stati fatte correzioni del laboratorio precedente)
+
+### Soluzioni semplici da evitare
+1. Non è giusto creare una classe per ogni possibile combinazione di decorazioni
+2. Antipattern God class, creare un boolean per fare il check di ogni possibile classe
+
+```mermaid
+classDiagram
+class CardSource
+CardSource: +draw()
+CardSource: +isEmpty()
+Decorator: method(CardSource)
+CardSource --> Decorator
+CardSource <|--* Decorator
+Decorator <-- logDecorator
+Decorator <-- memoDecorator
+```
+Utilizziamo Decorator come classe astratta perché ci permette di usare un unico pezzo di codice per differenti lavori. La fattorizzazione aggiunge leggibilità, evitandoci problemi quando questo codice da errore.
+
+- **Versione_1**:
+	```java
+	public abstract class Decorator implements CardSource{
+		private final CardSource element;
+		
+		public Decorator(CardSource cardSource) {
+			assert element != null;
+			this.element = element;
+		}
+		
+		@Override
+		public Card draw(){
+			return element.draw(); // non voglio cambiare draw();
+		}
+		
+		@Override
+		public boolean isEmpty() {
+			return element.isEmpty();
+		}
+	
+	}
+	```
+	aggiungo poi le classi che estendono il decorator
+
+- **Versione_2**:
+	creo classi separatamente, vedo se hanno qualcosa in comune, fattorizzo e vedo se c'è altro in comune.
+	```java
+	public abstract class Decorator implements CardSource{
+		private final CardSource element;
+		
+		public Decorator(CardSource cardSource) {
+			assert element != null;
+			this.element = element;
+		}
+		
+		@Override
+		public Card draw(){
+			Card card = element.draw()
+			decorationAction(card);
+			return card;
+		}
+		
+		@Override
+		public boolean isEmpty() {
+			return element.isEmpty();
+		}
+		
+		protected void decorationAction(@NotNull Card card){}
+	}
+```
+
+Per risolvere i problemi di stato presenti in queste versioni possiamo andarlo ad estrarre lo stato nella parte comune
+
+## Observer_Pattern
+
+### Observer: Push
+### Observer: Pull
+(da vedere sugli appunti pronti)
