@@ -364,6 +364,10 @@ git reset che parte dal local repo, aggiorna e sovrascrive gli index con quello 
 
 Creare dei branch è praticamente obbligatorio, quando cloniamo siamo già in presenza di due branch: Main e remote main.
 
+```code
+git branch -b nome_branch
+```
+
 La prima branch non vale come main effettivo, infatti il vero e proprio “main” sarà quello su cui verrà eseguito il primo commit; i branch si usano soprattutto in un workflow molto grande.
 
 ## Gitflow
@@ -471,7 +475,7 @@ pensato per la definizione di scripting, utilizzato per builds multi progetto, v
 ## Interfaccia e polimorfismo
 
 # Lezione_8
-## `Bug tracking`
+## Bug tracking
 
 Tengono traccia e gestiscono tutte le segnalazioni  sui difetti di un software.
 Hanno centralizzato le segnalazioni in modo tale da impedire il moltiplicarsi delle stesse. 
