@@ -5,3 +5,5 @@ cge - Gigabit ethernet
 
 ## Lezione 2
 Se ho apparati di livello uguale utilizzo la tipologia cross, altrimenti straight.
+
+![[../Images/Lab_reti2.png]]
