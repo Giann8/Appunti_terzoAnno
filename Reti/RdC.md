@@ -362,6 +362,15 @@ B rileva e propaga il suo costo diretto a D e C, supponiamo che il DV verso D si
 L'update immediato viene triggerato quando si rileva un errore
 
 ##### RIP
+Funzionamento:
+
+- per ogni entry della tabella di instradamento del router esiste un time. Se per 6tempi di update (circa 30 secondi l'uno) non ho risposta, allora viene messa la entry a infinity
+
+- si usa trigger update (c'è sempre il problema count-to-infinity)
+
+- il costo di un link si indica con il numero di hop nell'intervallo 0:15, con 16 = ∞
+
+- _update storm_ (tempesta di update): può capitare che i timer scadano tutti insieme, quindi viene generato tantisimo traﬃco in rete, perciò ogni nodo genera il proprio update con un ritardo (0 - 5 secondi)
 
 ##### Link-State
 Sappiamo che nel distance vector vengono inseriti anche nodi non conosciuti da A, come possiamo allora far si che A impari la topologia di rete? 
@@ -372,6 +381,14 @@ A invia quindi il suo LS a B ed E che propagano lo stesso in tutte le porte di u
 
 Se ricevo un sequence molto negativo (0) con un'età molto alta allora vuol dire che un nodo è crashato.
 
-##### OSPF(Open Shortest Path First)
+#### OSPF(Open Shortest Path First)
 Protocollo Link-State dominante in internet, consente la propagazione della conoscenza della topologia della rete, facendo si che ogni nodo possa calcolarsi il cammino minimo per ogni path.
-Si va a considerare quindi anche il costo computazionale speso durante il calcolo del cammino minimo
+Si va a considerare quindi anche il costo computazionale speso durante il calcolo del cammino minimo.
+
+#### AS(Autonomous System)
+L'OSPF organizza tutto lo spazio di una rete in più sottoreti dette `Aree` tra le quali troviamo una area0(area centrale da cui passa tutto il traffico) a cui corrispondono diverse aree collegate tra loro con vari router.
+Le tabelle di routing sono ridotte poiché interne.
+Per ruotare il traffico tra più AS utilizzerò non OSPF ne RIP ma il BGP.
+
+#### BGP[Porta 179 non 80 (gran trovata assurda)]
+è un ibrido detto `vettore del cammino`.
