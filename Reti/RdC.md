@@ -325,3 +325,53 @@ t0--B_rileva_guasto -->t1
 t1--t2-->t2
 t2--t3-->t3
 ```
+
+#### Count to Infinity
+Quando un nodo mi leva un costo 16 allora è un costo infinito.
+
+```mermaid
+graph LR
+A((A))
+B((B))
+C((C))
+D((D))
+A--1---B
+B--1---C
+C--1---D
+```
+Per evitare il count to infinity è
+
+##### Split Horizon
+Come si può capire dal nome il nodo svolge sempre lo split del suo horizon:
+- Link che vuole utilizzare per andare verso una destinazione
+- Link non disponibili
+non è risolutiva, fa convergere tutti i costi a infinito ma può fallire.
+
+```mermaid
+graph LR
+A((A));
+B((B));
+C((C));
+D((D));
+A--[x]---B;
+B---C;
+C---D;
+D---B
+```
+B rileva e propaga il suo costo diretto a D e C, supponiamo che il DV verso D si perda mentre C viene informato correttamente. Quando D propaga invia `infinito` a B come costo per andare ad A.
+L'update immediato viene triggerato quando si rileva un errore
+
+##### RIP
+
+##### Link-State
+Sappiamo che nel distance vector vengono inseriti anche nodi non conosciuti da A, come possiamo allora far si che A impari la topologia di rete? 
+A propaga, attraverso la tecnica del `flooding` il suo DVA a tutti i nodi presenti in rete.
+A invia quindi il suo LS a B ed E che propagano lo stesso in tutte le porte di uscita tranne quella da cui arriva. Ciò produce ridondanza in una topologia con cicli poiché alcuni nodi ricevono più volte il Link-state
+1. propago sui vari nodi
+2. cancello i link-state più vecchi
+
+Se ricevo un sequence molto negativo (0) con un'età molto alta allora vuol dire che un nodo è crashato.
+
+##### OSPF(Open Shortest Path First)
+Protocollo Link-State dominante in internet, consente la propagazione della conoscenza della topologia della rete, facendo si che ogni nodo possa calcolarsi il cammino minimo per ogni path.
+Si va a considerare quindi anche il costo computazionale speso durante il calcolo del cammino minimo
