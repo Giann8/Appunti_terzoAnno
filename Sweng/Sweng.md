@@ -438,10 +438,16 @@ Altri rami sono:
     
 - `Support`: aperto quando devo fixare dei bug in una versione vecchia del software senza andare ad intaccare la nuova versione (ad esempio viene presentato un bug della versione 1.1 ma siamo già alla v2.0).
     
+#### Git-flow dimenticanze
+1. `Mi sono dimenticato di aprire la feature`:  semplicemente apro la feature (se non ho fatto commit i cambiamenti potranno essere committati direttamente li);
+2. `Commit rosso ma ho modificato altro`: amend selezionando da intellij;
+3. `Commit rosso senza aver aperto la feature`:
+
+
 
 ### Git request-pull
 
-### Fork
+#### Fork
 
 Va a risolvere il problema delle autorizzazioni
 
@@ -593,7 +599,7 @@ Abbiamo tre categorie principali di pattern:
 
 ### Singleton Pattern
 Utilizzano solo oggetti e non classi cercando di rendere la classe responsabile del fatto che non può esistere più di una istanza.
-è Teoricamente giusto
+
 
 ```java
 public class Singleton {
@@ -638,6 +644,7 @@ return instance;
 public void metodoIstanza(){...}
 }
 ```
+è corretto concettualmente ma
 #### Singleton Java Idiom
 Gli idiomi vengono creati in modo differente per ogni linguaggio, in java utilizziamo `enum`, un enumerativo che ha come unico valore l'istanza; ciò permette (come nei singleton) di andare a creare una sola istanza  a cui dovranno accedere tutti. è inoltre thread safe, poiché la concorrenza viene gestita internamente da java.
 è definito Idioma poiché soluzione dipendente da uno specifico linguaggio.
@@ -700,14 +707,30 @@ else
 
 
 ## Mocking
-`Test Double` 
+`SUT`: System Under Test (è la parte di sistema che stiamo testando)
+
+```mermaid
+graph TD
+SET_UP -->EXERCISE
+EXERCISE-->VERIFY
+VERIFY-->TEARDOWN
+```
+
+
+### `Test Double` 
 Il doppione (non intende doppia precisione).
-Il doppione viene creato quando necessitiamo di un sostituto del DOC -> dependent on component che:
+Il doppione viene creato quando necessitiamo di un sostituto del `DOC` -> dependent on component che:
 - è ancora in fase di sviluppo
 - fornisce dati non deterministici o prevedibili
 - può presentare situazioni non facilmente riproducibili (tipo errori di trasmissione o esaurimento di memoria)
 - la funzione è lenta
 -  o semplicemente se si vuole testare il SUT -> System under test senza correre il rischio che il DOC introduca errori.
+
+Il mocking è ciò che ci permette di sostituire i DOC reali con i vari test double
+
+**Regole:**
+- Il test di unità deve contenere un unico oggetto (componente reale, quindi unica `new` );
+- Bisogna utilizzare il mockiang facendo attenzione a non mockare classi di librerie standard (come list).
 
 - ##### Dummy objects
 	Sono oggetti passati in giro ma mai veramente usati quando:
@@ -715,24 +738,60 @@ Il doppione viene creato quando necessitiamo di un sostituto del DOC -> dependen
 	- potrei avere solo una interfaccia e non una classe
 	- potrei avere solo costruttori complessi
 	Non mi interessano tutti i valori dati a questo oggetto, ne creo quindi uno fittizio.
+	
+	```java
+	@Test
+	public void testDummy(){
+	MyClass dummy = mock(MyClass.class);
+	
+	List<MyClass> SUT = new ArrayList<MyClass>();
+	
+	SUT.add(dummy);
+	
+	assertThat(SUT.size()).isEqualTo(1);
+	}
+	```
+	
 - ##### Stub Objects
-	Oggetti che forniscono delle risposte preconfezionate alle sole chiamate fatte durante il testing
+	Oggetti che forniscono delle risposte preconfezionate alle sole chiamate fatte durante il testing. Permette al test di forzare la realizzazione di scenari particolari o di specifico interesse.
+	
+	>[!Warning]
+	I test non devono mai essere più complicati della funzione che stanno testando, in caso ci si può appoggiare ad altri test.
+	
+- ##### Mock Objects (mockito)
+	Simile allo stub ma in questo caso andiamo a controllare gli _**Output Indiretti**_ del SUT, ovvero chiamate a metodi di un altro componente, record inseriti in un database o record scritti su file.
+	I mock sono quindi dei punti di osservazione che intercettano gli input indiretti e li verificano.
+	
 - ##### Spy Objects
-	Si prende un oggetto esistente e lo si circonda, wrappandolo, con oggetti che ne permettano l'utilizzo come mock
+	Si prende un oggetto esistente e lo si circonda, wrappandolo, con oggetti che ne permettano l'utilizzo come mock. Li utilizziamo quando la classe non può essere considerata come blackbox, permettendoci di testare solo elementi pubblici e non privati.
+	
 - ##### Fake objects
 	Non potrò mai usarli in produzione (esempio database), utili quando sfrutto per poco tempo le capacità del codice, non sono da costruire ma sono già presenti.
 	Inefficiente per casi troppo grandi.
+	
 
 ### Mockito
-Esempi: (da mettere)
+Framework di testing open source, presenta:
+- mock(): che ci permette di creare stub, mock o dummy
+- spy():  si ottiene uno spy object partendo da uno reale,può però essere utilizzato per fare il tracciamento delle chiamate ai suoi metodi.
 
 #### Stubbing
+
+per metodi che fanno il return di qualche cosa:
 ```java
 when(mockedObj).methodname(args).thenXXX(values);
 ```
+per metodi void:
 ```java
 doXXX(values).when(mockedObj).methodname(args)
 //funziona con metodi che ritornano void
+```
+#### Injection
+Con questa funzionalità di mockito noi possiamo andare ad iniettare all'interno di un oggetto reale, un oggetto mockato di cui necessitiamo la presenza, ovviamente dovremo fare opportuni stub essendo i metodi dell'oggetto mockato settati con un valore di ritorno di default.
+
+```java
+@Mock Classe mockedClass;
+@InjectMocks ClasseInCuiIniettare nomeClasse;
 ```
 
 #### Chain of responsibility
@@ -846,3 +905,22 @@ Per risolvere i problemi di stato presenti in queste versioni possiamo andarlo a
 ### Observer: Push
 ### Observer: Pull
 (da vedere sugli appunti pronti)
+
+
+L'interface Observer avrà alcuni metodi che dovranno essere implementeati:
+- getState
+- setTemp (va a modificare il valore quindi notificheremo)
+- notifyObservers()
+- addObserver() alla lista di osservatori
+- removeObserver()
+
+## Come identifichiamo classi e relazioni
+- TDD e pattern
+- Noun Extraction:
+	Parte dalle specifiche scritte in linguaggio naturale e come useStory o useCase, si estraggono i sostantivi, consideriamo i vari candidati e iniziamo a sfoltire; infine iniziamo a identificare le varie relazioni.
+	- Criteri di sfoltimento sono: 
+		1. ridondanza
+		2. vaghezza, nomi generici (scartarli ma non troppo)
+		3. nomi di eventi e operazioni
+		4. metalinguaggio: sistema, regole...
+		Le generalizzazioni posso utilizzarle come parametrizzazioni, magari alcune cose simili hanno metodi aggiunti o differenti di altri. Posso anche prendere in prestito elementi scartati
