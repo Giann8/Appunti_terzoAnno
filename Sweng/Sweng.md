@@ -790,8 +790,12 @@ doXXX(values).when(mockedObj).methodname(args)
 Con questa funzionalità di mockito noi possiamo andare ad iniettare all'interno di un oggetto reale, un oggetto mockato di cui necessitiamo la presenza, ovviamente dovremo fare opportuni stub essendo i metodi dell'oggetto mockato settati con un valore di ritorno di default.
 
 ```java
+@ExtendWith(MockitoExtension.class);
+class test{
 @Mock Classe mockedClass;
 @InjectMocks ClasseInCuiIniettare nomeClasse;
+@Test
+}
 ```
 
 #### Chain of responsibility
