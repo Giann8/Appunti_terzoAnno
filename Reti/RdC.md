@@ -432,3 +432,16 @@ Tecniche (non viste qua ma alla magistrale):
 - packet scheduling (code di uscita)
 - traffic shaping (trucco per vedere che nessuno imbrogli sulla rete)
 Servono a gestire le diversità di traffico
+
+#### RED
+Random Early detection
+Permette di rilevare una possibile situazione di pericolo di congestione in anticipo.
+Il nodo ragiona per evitare di andare in congestione.
+
+
+##### Gestione code di Uscita
+Le code di ingresso provenienti da router con lavori simili vengono gestiti dal classifier che (come un multiplex) li va a smistare
+
+##### Token Bucket
+abbiamo un token generator che produce token in un tempo R e li mette in un bucket, se il token non è presente nella pipe allora il pacchetto resterà in attesa fino all'arrivo.
+All'inizio invece il bucket può essere riempito di token che ci permetterà di aumentare il traffico di ingresso fino a tornare alla normale velocità di produzione. Ciò è detto traffic shaping.
