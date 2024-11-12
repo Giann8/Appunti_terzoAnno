@@ -382,13 +382,53 @@ A invia quindi il suo LS a B ed E che propagano lo stesso in tutte le porte di u
 Se ricevo un sequence molto negativo (0) con un'età molto alta allora vuol dire che un nodo è crashato.
 
 #### OSPF(Open Shortest Path First)
-Protocollo Link-State dominante in internet, consente la propagazione della conoscenza della topologia della rete, facendo si che ogni nodo possa calcolarsi il cammino minimo per ogni path.
+Protocollo Routing Link-State dominante in internet, consente la propagazione della conoscenza della topologia della rete, facendo si che ogni nodo possa calcolarsi il cammino minimo per ogni path.
 Si va a considerare quindi anche il costo computazionale speso durante il calcolo del cammino minimo.
 
 #### AS(Autonomous System)
 L'OSPF organizza tutto lo spazio di una rete in più sottoreti dette `Aree` tra le quali troviamo una area0(area centrale da cui passa tutto il traffico) a cui corrispondono diverse aree collegate tra loro con vari router.
 Le tabelle di routing sono ridotte poiché interne.
 Per ruotare il traffico tra più AS utilizzerò non OSPF ne RIP ma il BGP.
+In grandi AS si rinuncia al flooding, eleggo un nodo della mia rete (area0 di solito) come router che si fa carico del costo computazionale e del calcolo delle tabelle di routing degli altri.
+Vado così a sovraccaricare un singolo nodo, i `designed routers` sono però ad alto rischio di fallimento.
 
+La backbone è il primo livello di connettività fino ad arrivare alle lan di accesso
 #### BGP[Porta 179 non 80 (gran trovata assurda)]
 è un ibrido detto `vettore del cammino`.
+Border Gateway protocol, permette la realizzazione di alcune metriche.
+---**Come Funziona?**---
+va a calcolare il costo del `path vector` che permette ad un nodo di raggiungere un altro nodo
+Se ne riceve uno con troppi nodi lo va a scartare (esempio E::3 EFBC verrà scartato mentre verrà tenuto A::5ABC)
+
+Va a controllare le tabelle di routing accettando tutti i cammini migliori e cestinando gli altri
+###### QOS (quality of Service)
+
+- affidabilità (se spedisco un pacchetto voglio che arrivi in ordine, non corrotto e senza duplicati)
+- Delay (Latenza che ho fra me un un interlocutore può influire)
+- Jitter (varianza sul ritardo)
+- Banda (capacità del canale, poiché devo sapere se ciò che mando può passare)
+
+Tabella per evidenziare eventuale utilizzo delle qualità sopra evidenziate:
+
+|                | aff | Delay | jitter | Banda |
+| -------------- | --- | ----- | ------ | ----- |
+| e_mail         | A   | L     | L      | L     |
+| FTP            | A   | L     | L      | M     |
+| web            | A   | M     | L      | M     |
+| AudioStream    | L   | L     | A      | L/M   |
+| Video          | X   | X     | X      | A     |
+| telefoni       | L   | A     | A      | L     |
+| Videoconf      | L   | A     | A      | A     |
+| remote control | A   | A     | A      | L     |
+
+Per inviare un segnale posso usare il campionamento, cerco di ricreare il segnale vecchio campionandolo, maggiore è la frequenza di campionamento migliore sarà la copia del segnale anche se ne risentirà la tempistica
+Un canale digitalizzato occupa 64kbit, mandandola dall'altra parte avrò la garanzia che ciò che si riceve sarà buono.
+per evitare ritardi di trasmissione utilizzo un buffer per il jitter detto `buffer di play-out`, non possiamo usarlo totalmente in una comunicazione real-time poiché porterà ad avere un alto lag.
+
+Utilizziamo l'edge computing -> spostiamo un eventuale server di controllo per diminuire/limitare l'incidenza del Delay.
+
+Tecniche (non viste qua ma alla magistrale):
+- buffering (code di ingresso)
+- packet scheduling (code di uscita)
+- traffic shaping (trucco per vedere che nessuno imbrogli sulla rete)
+Servono a gestire le diversità di traffico
