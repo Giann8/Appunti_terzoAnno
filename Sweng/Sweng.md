@@ -1,4 +1,4 @@
-# Ingegneria del software
+c# Ingegneria del software
 
 Il processo di produzione di un software si basa sulla comunicazione e sull’essere rigorosi, inoltre va a considerare diversi aspetti.
 
@@ -928,3 +928,51 @@ L'interface Observer avrà alcuni metodi che dovranno essere implementeati:
 		3. nomi di eventi e operazioni
 		4. metalinguaggio: sistema, regole...
 		Le generalizzazioni posso utilizzarle come parametrizzazioni, magari alcune cose simili hanno metodi aggiunti o differenti di altri. Posso anche prendere in prestito elementi scartati
+
+----Fine primo compitino---
+# Lezione_15
+## Stato
+- Concreto --> Dipende dalla sua implementazione
+- Astratto --> sottoinsieme arbitrario degli stati concreti
+_**Casi particolari**_
+- oggetti senza stato --> stateless objects --> astrazioni funzionali
+- oggetti che hanno un solo stato --> oggetti immutabili 
+### State Diagram
+Automa a stati finiti
+--> _S0_ stato iniziale
+#### esempio
+![[images/Screenshot 2024-11-13 alle 16.30.48.png]]
+- **Mealy** --> uscite dipendono da stato raggiunto e da come
+- **Moore** --> uscite dipendono solo Dallo stato raggiunto
+
+### UML
+Deriva da stateCharts
+#### Esempio Classe Copia
+disponibile e in prestito --> alcuni (non tutti) degli stati completi
+```mermaid
+graph LR
+inPrestito --restituisci()/book.restituito(this) --> disponibile
+disponibile --prendiInPrestito()/book.presoInPrestito(this) --> inPrestito
+```
+stato --> stimolo --> nuovo stato
+#### Guardie
+Utilizzate per disambiguare le transizioni causate da uno stesso evento e uscenti da stesso stato
+
+#### Superstate
+In un super stato vado ad inserire un sotto diagramma
+La definizione di superstato la vediamo riadattata nella concorrenza, dove differenti superstati 
+
+### State Pattern
+modelliamo i cambiamenti di comportamento al cambiare dello stato dell'oggetto
+```java
+public class Context {
+private State state;
+public void setState(@NotNull State s){
+state=s;
+}
+public void sampleOperation() {
+state.sampleOperation(this);
+}
+}
+```
+
