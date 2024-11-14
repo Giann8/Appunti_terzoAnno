@@ -649,10 +649,26 @@ public void metodoIstanza(){...}
 Gli idiomi vengono creati in modo differente per ogni linguaggio, in java utilizziamo `enum`, un enumerativo che ha come unico valore l'istanza; ciò permette (come nei singleton) di andare a creare una sola istanza  a cui dovranno accedere tutti. è inoltre thread safe, poiché la concorrenza viene gestita internamente da java.
 è definito Idioma poiché soluzione dipendente da uno specifico linguaggio.
 Il Singleton deve però essere usato con cautela poiché viola alcuni dei principi `SOLID` e può essere sostituito da altri elementi in base alla circostanza.
+```java
+enum Singleton {
+INSTANCE;
+public IstanceMethod(){}
+}
+Singleton.INSTANCE.sampleOp();
+```
 
 ### Iterator pattern
 Permette di accedere agli elementi di un oggetto aggregatore in maniera sequenziale senza dover esporre la rappresentazione interna.
+```java
+class MyClass implement Iterable<T>{
 
+	public Iterator<T> iterator(){
+	    return new Arraylist<>(nomeLista).iterator() //piace al bellettini;
+		//meglio questo sopra
+		return Collections.UnmodifiableList(nomeLista).iterator();
+	}
+}
+```
 
 # Lezione_10
 
@@ -755,7 +771,7 @@ Il mocking è ciò che ci permette di sostituire i DOC reali con i vari test dou
 - ##### Stub Objects
 	Oggetti che forniscono delle risposte preconfezionate alle sole chiamate fatte durante il testing. Permette al test di forzare la realizzazione di scenari particolari o di specifico interesse.
 	
-	>[!Warning]
+	>[[!Warning]]
 	I test non devono mai essere più complicati della funzione che stanno testando, in caso ci si può appoggiare ad altri test.
 	
 - ##### Mock Objects (mockito)
@@ -774,6 +790,10 @@ Il mocking è ciò che ci permette di sostituire i DOC reali con i vari test dou
 Framework di testing open source, presenta:
 - mock(): che ci permette di creare stub, mock o dummy
 - spy():  si ottiene uno spy object partendo da uno reale,può però essere utilizzato per fare il tracciamento delle chiamate ai suoi metodi.
+- constructor mock:
+	```java 
+	try(var sube =Mockito.mockConstruction(Giocatore.class)){...}
+```
 
 #### Stubbing
 
