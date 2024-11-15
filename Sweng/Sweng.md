@@ -1,4 +1,3 @@
-c# Ingegneria del software
 
 Il processo di produzione di un software si basa sulla comunicazione e sull’essere rigorosi, inoltre va a considerare diversi aspetti.
 
