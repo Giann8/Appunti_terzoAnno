@@ -216,3 +216,305 @@ Milano: 194.24.0._ -> 194.24.7._ ha segnato 2048 indirizzi
 ##### NAT {RFC 3022}
 La rete presenta un IP privato e un IP pubblico.
 L'indirizzo pubblico è quello che viene utilizzato, necessitiamo quindi di qualcosa che possa trasformare un IP pubblico in privato e viceversa; entra quindi in gioco il nat che si frappone tra internet privato e pubblico (unico).
+
+Ricevo un pacchetto, guardo da dove è arrivato, sostituisco il sorgente privato con l'IP address pubblico.
+Questo è utile e necessario poiché sono indirizzi utilizzabili da tutti, quando il NAT riceve un messaggio va a cercare nella sua tabella se l'indirizzo privato sia o no presente e associato ad un indirizzo NAT
+
+Configuro il NAT a crearsi una entry a tutte le sue tabelle che apra tutte le porte ai server a cui è collegata.
+
+```mermaid
+	graph LR
+	200DS([destinazione del flusso, server])
+	id1(NAT)
+	macchina_1 --> id1
+	macchina_2 --> id1 
+	id1 --> 200
+	200 <--> 200DS
+```
+
+
+Se il server sta dietro al NAT devo mappare ciò che arriva dall'esterno su un IP preciso per il server.
+##### ARP
+Classificato fra i protocolli di livello 3.
+Deve inviare un segnale a tutti i device quindi in broadcast, inviando così un'arp-request si riceverà (anch'essa in broadcast) una arp-reply che permetterà di associare la cache di tutti i dispositivi e del router stesso.
+- ##### Proxy-arp
+	è una funzione che sta dentro a tutti i gateway che vede arrivare le arp request rispondendo poi al posto dell'host esterno
+
+
+Il broadcast su una rete magliata risulta impossibile, devo stare attento ad evitare i loop per poterlo fare senza cicli. Costruisco quindi lo spanning tree, l'albero dei cammini minimi che va a collegare tutte le sottoreti evitando i cicli. Quello con IP minore fa da router gli altri da foglie, hanno tutti due porti, una root (che dirige verso la root)
+
+
+# 5/11/2024
+## ICMP
+```mermaid
+graph LR
+D_CC([Un nodo controlla sempre la sua congestione,\ninvia un choke packet all'IP \nsorgente per rallentarlo])
+D_VR([Ping ed echo\ncontrollo che ci sia qualcosa che riceve])
+ICMP-->verifica_raggiungibilità-->D_VR
+ICMP-->controllo_di_congestione-->D_CC
+```
+## Seconda funzionalità strategica del livello 3
+molto simile al livello 2, unica differenza è che la tabella viene popolata da frame con una funzione di routing che acquisisce conoscenza sulla rete così da poter capire quale sia la porta di output migliore
+
+Due tecniche:
+1. distance vector
+2. link state
+
+
+### Distance vector
+I nodi, con questa tecnica, posso costruire le proprie tabelle di instradamento tenendo anche conto della congestione di rete 
+
+```mermaid
+graph LR;
+A<-->B
+A<-->E
+B<-->C & D
+C<-->D
+D<-->E
+```
+(Tabella non uguale a quella delle lezioni, può confondere)
+Tabelle delle adiacenze:
+#### A
+
+| R   | L   | C   |
+| --- | --- | --- |
+| B   | 1   | 3   |
+| E   | 6   | 2   |
+#### B
+| R   | L   | C   |
+| --- | --- | --- |
+| A   | 1   | 3   |
+| C   | 2   | 4   |
+| D   | 3   | 3   |
+#### C
+| R   | L   | C   |
+| --- | --- | --- |
+| B   | 2   | 4   |
+| D   | 4   | 3   |
+In ogni nodo possiamo aggiungere anche un nodo che non si collega (A L = 0 C = 0 in questo caso)
+Distance vector di **A**
+
+| B   | 3   |
+| --- | --- |
+| E   | 2   |
+Distance vector di B
+
+A | 3
+--|-
+C | 4
+D | 3
+`Se A riceve il DVB?`
+Scopre che esistono un C e un D da qualche parte, non conosce come B possa arrivarci ma gli permette di creare una tabella di routing
+
+| RA  | L   | C   |
+| --- | --- | --- |
+| B   | 1   | 3   |
+| E   | 6   | 3   |
+| C   | 1   | 7   |
+| D   | 1   | 6   |
+
+A va ad aggiornare la tabella di routing migliorando la raggiungibilità dei nodi
+Quando un nodo rileva un guasto su un certo link diventa irraggiungibile (Esempio B L=2 e C infinito)
+```mermaid
+graph TD
+t0([A 1,2 ; B 2,1 ; C 3,2 ; E 6,3])
+t1([B 2, infinito])
+t2([Dva 2C])
+t3([A 1,2 ; B 1,3])
+t0--B_rileva_guasto -->t1
+t1--t2-->t2
+t2--t3-->t3
+```
+
+#### Count to Infinity
+Quando un nodo mi leva un costo 16 allora è un costo infinito.
+
+```mermaid
+graph LR
+A((A))
+B((B))
+C((C))
+D((D))
+A--1---B
+B--1---C
+C--1---D
+```
+Per evitare il count to infinity è
+
+##### Split Horizon
+Come si può capire dal nome il nodo svolge sempre lo split del suo horizon:
+- Link che vuole utilizzare per andare verso una destinazione
+- Link non disponibili
+non è risolutiva, fa convergere tutti i costi a infinito ma può fallire.
+
+```mermaid
+graph LR
+A((A));
+B((B));
+C((C));
+D((D));
+A--[x]---B;
+B---C;
+C---D;
+D---B
+```
+B rileva e propaga il suo costo diretto a D e C, supponiamo che il DV verso D si perda mentre C viene informato correttamente. Quando D propaga invia `infinito` a B come costo per andare ad A.
+L'update immediato viene triggerato quando si rileva un errore
+
+##### RIP
+Funzionamento:
+
+- per ogni entry della tabella di instradamento del router esiste un time. Se per 6tempi di update (circa 30 secondi l'uno) non ho risposta, allora viene messa la entry a infinity
+
+- si usa trigger update (c'è sempre il problema count-to-infinity)
+
+- il costo di un link si indica con il numero di hop nell'intervallo 0:15, con 16 = ∞
+
+- _update storm_ (tempesta di update): può capitare che i timer scadano tutti insieme, quindi viene generato tantisimo traﬃco in rete, perciò ogni nodo genera il proprio update con un ritardo (0 - 5 secondi)
+
+##### Link-State
+Sappiamo che nel distance vector vengono inseriti anche nodi non conosciuti da A, come possiamo allora far si che A impari la topologia di rete? 
+A propaga, attraverso la tecnica del `flooding` il suo DVA a tutti i nodi presenti in rete.
+A invia quindi il suo LS a B ed E che propagano lo stesso in tutte le porte di uscita tranne quella da cui arriva. Ciò produce ridondanza in una topologia con cicli poiché alcuni nodi ricevono più volte il Link-state
+1. propago sui vari nodi
+2. cancello i link-state più vecchi
+
+Se ricevo un sequence molto negativo (0) con un'età molto alta allora vuol dire che un nodo è crashato.
+
+#### OSPF(Open Shortest Path First)
+Protocollo Routing Link-State dominante in internet, consente la propagazione della conoscenza della topologia della rete, facendo si che ogni nodo possa calcolarsi il cammino minimo per ogni path.
+Si va a considerare quindi anche il costo computazionale speso durante il calcolo del cammino minimo.
+
+#### AS(Autonomous System)
+L'OSPF organizza tutto lo spazio di una rete in più sottoreti dette `Aree` tra le quali troviamo una area0(area centrale da cui passa tutto il traffico) a cui corrispondono diverse aree collegate tra loro con vari router.
+Le tabelle di routing sono ridotte poiché interne.
+Per ruotare il traffico tra più AS utilizzerò non OSPF ne RIP ma il BGP.
+In grandi AS si rinuncia al flooding, eleggo un nodo della mia rete (area0 di solito) come router che si fa carico del costo computazionale e del calcolo delle tabelle di routing degli altri.
+Vado così a sovraccaricare un singolo nodo, i `designed routers` sono però ad alto rischio di fallimento.
+
+La backbone è il primo livello di connettività fino ad arrivare alle lan di accesso
+#### BGP[Porta 179 non 80 (gran trovata assurda)]
+è un ibrido detto `vettore del cammino`.
+Border Gateway protocol, permette la realizzazione di alcune metriche.
+---**Come Funziona?**---
+va a calcolare il costo del `path vector` che permette ad un nodo di raggiungere un altro nodo
+Se ne riceve uno con troppi nodi lo va a scartare (esempio E::3 EFBC verrà scartato mentre verrà tenuto A::5ABC)
+
+Va a controllare le tabelle di routing accettando tutti i cammini migliori e cestinando gli altri
+###### QOS (quality of Service)
+
+- affidabilità (se spedisco un pacchetto voglio che arrivi in ordine, non corrotto e senza duplicati)
+- Delay (Latenza che ho fra me un un interlocutore può influire)
+- Jitter (varianza sul ritardo)
+- Banda (capacità del canale, poiché devo sapere se ciò che mando può passare)
+
+Tabella per evidenziare eventuale utilizzo delle qualità sopra evidenziate:
+
+|                | aff | Delay | jitter | Banda |
+| -------------- | --- | ----- | ------ | ----- |
+| e_mail         | A   | L     | L      | L     |
+| FTP            | A   | L     | L      | M     |
+| web            | A   | M     | L      | M     |
+| AudioStream    | L   | L     | A      | L/M   |
+| Video          | X   | X     | X      | A     |
+| telefoni       | L   | A     | A      | L     |
+| Videoconf      | L   | A     | A      | A     |
+| remote control | A   | A     | A      | L     |
+
+Per inviare un segnale posso usare il campionamento, cerco di ricreare il segnale vecchio campionandolo, maggiore è la frequenza di campionamento migliore sarà la copia del segnale anche se ne risentirà la tempistica
+Un canale digitalizzato occupa 64kbit, mandandola dall'altra parte avrò la garanzia che ciò che si riceve sarà buono.
+per evitare ritardi di trasmissione utilizzo un buffer per il jitter detto `buffer di play-out`, non possiamo usarlo totalmente in una comunicazione real-time poiché porterà ad avere un alto lag.
+
+Utilizziamo l'edge computing -> spostiamo un eventuale server di controllo per diminuire/limitare l'incidenza del Delay.
+
+Tecniche (non viste qua ma alla magistrale):
+- buffering (code di ingresso)
+- packet scheduling (code di uscita)
+- traffic shaping (trucco per vedere che nessuno imbrogli sulla rete)
+Servono a gestire le diversità di traffico
+
+#### RED
+Random Early detection
+Permette di rilevare una possibile situazione di pericolo di congestione in anticipo.
+Il nodo ragiona per evitare di andare in congestione.
+
+
+##### Gestione code di Uscita
+Le code di ingresso provenienti da router con lavori simili vengono gestiti dal classifier che (come un multiplex) li va a smistare
+
+##### Token Bucket
+abbiamo un token generator che produce token in un tempo R e li mette in un bucket, se il token non è presente nella pipe allora il pacchetto resterà in attesa fino all'arrivo.
+All'inizio invece il bucket può essere riempito di token che ci permetterà di aumentare il traffico di ingresso fino a tornare alla normale velocità di produzione. Ciò è detto traffic shaping.
+
+---
+# Seconda parte
+
+## Livello di trasporto
+I due host sono i punti di partenza e di arrivo del messaggio.
+```mermaid
+graph LR;
+
+host1 --> host2;
+Segmenti --> messaggi;
+
+```
+Anche nella scelta della socket dovremmo scegliere se farla udp o tcp.
+
+```mermaid
+graph TD
+Client_AP --> SB;
+RB --> Client_AP;
+TCP --> RB;
+SB --> TCP;
+
+TCP --> exit
+
+Client --> Client_transport_entity;
+Server --> Server_transport_entity;
+```
+
+![[Images/Signals_client-server.png]]
+
+**Lato server**
+La prima chiamata del server è "Socket()"
+Bind()
+addr IP,port
+LISTEN() crea una coda delle richieste
+ACCEPT() si mette in ascolto e aspetta che qualcuno chieda di "connettersi"
+-richiesta client
+unlock
+fork()
+socket()
+Bind()
+Chiudo facendo
+Close()
+
+**Lato client**
+Socket()
+Connect() IP: porta, scatena un segnale che va a "sbloccare" la chiamata bloccante del server 
+BLOCCANTE, aspetta che l'altro end-point risponda
+-richiesta del server
+si possono fare chiamate come Send() e Receive()
+Chiudo facendo
+Close()
+![[Images/Socket_signals.png]]
+
+### TCP
+Transmission Control Protocol
+Garantisce una trasmissione affidabile, ordinata,permette il controllo di flusso e il controllo di errori (sistema eventuali problemi di connessione). Inoltre effettua un controllo di congestione, va a diminuire la velocità dei pacchetti se la connessione è congestionata.
+Orientata allo stream e alla connessione.
+
+SRC port | DST Port
+Sequence number
+ack number
+tcp header length
+
+![[Images/TCP.png]]
+
+Strada a due direzioni A trasmette in B e B notifica quando riceve il tutto.
+
+![[Socket_signals_function.png]]
+Connessione tra due host aperta con successo (a) e connessione rara che avviene in contemporanea (b, da guardare e basta).
+Qualsiasi segmento può essere perso provocando errori:
+**SYN perso = nulla**, non ho aperto la connessione, ma A non sa cosa sia successo.Esiste però un timer che scaduto un certo quantitativo di tempo ri-iniziallizza la connessione con un valore diverso per evitare hard-guessing, il timer vale anche per l'acknowledgment, allo scadere dell'ack viene mandato un nuovo ack. Se nonostante il timer non si riceva un segnale viene chiusa la connessione
+**SYN flood**, utilizzato per fare port scanning
