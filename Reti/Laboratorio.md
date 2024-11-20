@@ -3,12 +3,12 @@
 (consiglia di non usare apparati di rete cisco)
 cge - Gigabit ethernet
 
-## Lezione_2
+# Lezione_2
 Se ho apparati di livello uguale utilizzo la tipologia cross, altrimenti straight.
 
 ![[../Images/Lab_reti2.png]]
 
-## Lezione_4
+# Lezione_4
 `?`-> Svela i comandi eseguibili
 `show` -> utile come utente.
 in caso di errori per mac ctrl+shift+^
@@ -23,7 +23,7 @@ con `switchport` configuro il canale:
 - `switchport access vlan {id}`
 - `switchport trunk allowed vlan add 120`
 
-## Lezione_5
+# Lezione_5
 ### Class-based addressing
 - Primo ottetto serve per capire il continente
 I router non possono avere due interfacce sulla stessa rete, tutte le loro interfacce si trovano su reti diverse.
@@ -31,15 +31,40 @@ I router non possono avere due interfacce sulla stessa rete, tutte le loro inter
 Ricordarsi nei router di settare l'indirizzo ip dello switch e accendere sempre le porte
 Gli indirizzi di base sono sempre pari.
 L'indirizzo di Broadcast è sempre dispari.
-## Esercizi
+
+
+# Lezione_6
+
+## Subnetting
+### Dimensionamento_sottoreti
+rete 192.168.20.96/27
+
+- VERDE: 4 host + 1 router +broadcast + base = 7 indirizzi -> 3 bit 
+	01100111
+	- Netmask: 255.255.255.248
+	- Base: 192.168.20.96/29
+	- Broadcast: 192.168.20.103(01100111)
+	- Range:192.168.20.97-192.168.20.102
+- ARANCIO: 2 host + router +broadcast + base = 5 indirizzi -> 3 bit
+	01101000
+	- Netmask:255.255.255.248
+	- Base: 192.168.20.104/29
+	- Broadcast: 192.168.20.111
+	- Range: 192.168.20.105 - 192.168.20.110
+
+
+---
+
+# Esercizi
 ### Lezione_5
-1. 
+1. Conversioni
+2. 
 	- 127.128.129.192 -> 01111111.10000000.10000001.11000000
 	- 218.160.179.60 -> 11010000.10100000.10110011.00111100
 	- 01011011.01110110.00101111.10011111->91.118.47.159
 	- 00001100.10001000.01110010.00110111->12.136.114.55
 
-2. Indirizzo broadcast, netmask e 2 indirizzi validi per
+3. Indirizzo broadcast, netmask e 2 indirizzi validi per
 	- 15.0.0.0 (A)
 		- Bcast: 15.255.255.255; 
 		- netmask: 255.0.0.0;
@@ -53,7 +78,7 @@ L'indirizzo di Broadcast è sempre dispari.
 		- netmask: 255.255.255.0;
 		- 2 indirizzi: 215.151.59.1 - 215.151.59.254;
 
-1. Indirizzi di host (n) -> indirizzo base, netmask, indirizzo broadcast, numero apparati indirizzabili:
+4. Indirizzi di host (n) -> indirizzo base, netmask, indirizzo broadcast, numero apparati indirizzabili:
 	(_networkID_)
 	
 	- 111.162.136.87 (12) -> _01101111.1010_|0010.01010111
@@ -66,3 +91,22 @@ L'indirizzo di Broadcast è sempre dispari.
 		- Netmask: 11111111.11111111.11111111.1|0000000 -> 255.255.255.128
 		- Bcast: 10001110.10111111.00000001.1|1111111 -> 206.191.1.255
 		- numero apparati: 2^7 - 2
+
+
+
+---
+
+### Lezione_6
+1. Indirizzamento a livello 3
+	- Indirizzo base rete 192.168.20.96/27
+	- Subnet s1 con 5 apparati; subnet s2 con 14 apparati (estendo con switch)
+		- s1:
+			- Netmask: 255.255.255.248;
+			- Base: 192.168.20.96/29;
+			- Broadcast: 192.168.20.103;
+			- Range: 192.168.20.97 - .102;
+		- S2:
+			- Netmask:  255.255.255.248;
+			- Base: 192.168.20.104/28;
+			- Broadcast: 192.168.20.119;
+			- Range: 192.168.20.105-.118;
