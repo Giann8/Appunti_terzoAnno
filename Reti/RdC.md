@@ -517,8 +517,8 @@ Strada a due direzioni A trasmette in B e B notifica quando riceve il tutto.
 ![[Socket_signals_function.png]]
 Connessione tra due host aperta con successo (a) e connessione rara che avviene in contemporanea (b, da guardare e basta).
 Qualsiasi segmento può essere perso provocando errori:
-**SYN perso = nulla**, non ho aperto la connessione, ma A non sa cosa sia successo.Esiste però un timer che scaduto un certo quantitativo di tempo ri-iniziallizza la connessione con un valore diverso per evitare hard-guessing, il timer vale anche per l'acknowledgment, allo scadere dell'ack viene mandato un nuovo ack. Se nonostante il timer non si riceva un segnale viene chiusa la connessione
+**SYN perso = nulla**, non ho aperto la connessione, ma A non sa cosa sia successo.Esiste però un timer che scaduto un certo quantitativo di tempo ri-iniziallizza la connessione con un valore diverso per evitare hard-guessing, il timer vale anche per l'acknowledgment, allo scadere dell'ack viene mandato un nuovo ack. Se nonostante il timer non si riceva un segnale viene chiusa la connessione.
+
 **SYN flood**, utilizzato per fare port scanning
-=======
 All'inizio invece il bucket può essere riempito di token che ci permetterà di aumentare il traffico di ingresso fino a tornare alla normale velocità di produzione. Ciò è detto traffic shaping.
->>>>>>> main
+
