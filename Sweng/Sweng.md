@@ -1,4 +1,3 @@
-# Ingegneria del software
 
 Il processo di produzione di un software si basa sulla comunicazione e sull’essere rigorosi, inoltre va a considerare diversi aspetti.
 
@@ -206,11 +205,41 @@ Tra gli sviluppatori è presente un `Tracker`, figura alternata tra i componenti
 	3. **Terza fase:**
 		Si va a stimare il tempo (ore/uomo) di una delle carte più semplici (di valore 2) e le altre stime saranno calcolate proporzionalmente.
 		**Velocity**: capacità del team di completare certi lavori, va a sostituire la necessità di ri-mappare unità ideali in tempi assoluti, dopo aver completato la prima iterazione il team dirà di poter sviluppare tanti punti quanti erano quelli fatti nell'iterazione precedente.
+2. **Brevi cicli di rilascio**
+	Rilascio diverse versioni del software in modo da diminuire eventuali rischi e problemi che possiamo avere in corso d'opera, devono comunque essere rilasci significativi decisi dal manager.
+
+
+
 		>[!Attenzione] 
 		>- Non è un metro di valutazione del team
 		>- Non si devono considerare storie non finite
 		>- Non deve essere imposta
+3. **Uso di metafora (poco usato)**
+	Trovo un elemento diverso sul quale mappare i vari elementi del programma 
+4. **Semplicità di progetto**
+	Massimizzare il lavoro non fatto (se ho un pezzo di codice che uso più volte non andrò a copiarlo e incollarlo ma creerò una funzione, così da dover cambiare il codice una sola volta)
+5. **Testing**
+	Dobbiamo ideare i test prima di scrivere il codice, scrivendo dei test abbiamo la sicurezza che il codice funzioni; ciò può essere utile anche per programmatori che non hanno mai visto quella parte di codice.
+6. **Refactoring**
+	Fatto per `Incremento` e `Semplificazione` 
+7. **Programmazione a coppie**
+	Aiuta nella maggior parte del lavoro, dal controllo continuo del rispetto delle regole XP al refactoring, diminuisce in caso la quantità di codice prodotto ma aumenta la quantità concedendo quindi un aumento del guadagno.
+8. **Proprietà collettiva**
+	La responsabilità di ogni cambiamento non è della singola persona ma dell'intero team, dobbiamo sentirci responsabilizzati sull'intero codice anche se non conosciamo tutto alla stessa maniera.
+9. **Integrazione continua**
+	Bisogna avere una veloce frequenza di integrazione e aggiornamento, quando viene risolto un problema bisogna risolvere anche i problemi di integrazione
+10. **Settimana di 40 ore**
+	Con un quantitativo di ore di lavoro non eccessivo i programmatori lavorano meglio grazie ad un buon rapporto vita/lavoro.
+11. **Cliente sul posto**
+	Permette una fase di specifica leggera e fornisce informazioni in tempo reale riguardo nuove funzioni o plug in.
+12. **Standard di codifica**
+	Uno standard deciso tra i componenti del team per aiutare nella comprensione del codice, semplificando refactoring, lavoro a coppie e proprietà collettiva.
+13. **Just loose (?)(non piace al bellettini)**
+	Le regole sopra citate sono solo di riferimento non universali, possiamo considerarle tutte, solo alcune o nessuna. (non farlo all'esame).
 
+
+---
+# Lezione_5
 ## Raggruppare per fasi
 
 - Requirements:
@@ -231,8 +260,8 @@ Tra gli sviluppatori è presente un `Tracker`, figura alternata tra i componenti
 
 ## Documentazione
 
-La documentazione cartacea non è necessaria.
-
+Bisogna cercare di scrivere codice che non abbia bisogno di commenti.
+è qualcosa di volatile che può portare a un disallineamento, la fonte principale di documentazione deve quindi essere il codice stesso, scritto in modo leggibile grazie agli standard di codifica, ma soprattutto dai test.
 ## Quando non possiamo usare xp?
 
 In ambienti che impediscono l’uso di anche un solo approccio utilizzato,
@@ -245,6 +274,35 @@ In ambienti che impediscono l’uso di anche un solo approccio utilizzato,
 
 Il rapporto tra numero di persone che lavorano e tempo si pensa essere proporzionale, ovvero all’aumento del numero di persone diminuisce il tempo che esse devono impiegare per programmare i loro pezzo di codice, ovviamente ciò è sbagliato a causa dell’**overhead** che va ad impedire una corretta comunicazione impattando la gestione dei ritardi.
 
+## Open Source
+- Cattedrale e il Bazaar
+	Prende come punto di partenza la frenesia di uno sviluppatore pronto a programmare, egli chiede ad amici o colleghi, trovando qualcuno con problemi simili o lo stesso problema ma non trovano soluzioni, si ha quindi uno scambio di pareri tra le persone interessate e quelle che intendono spendere risorse (ovvero tempo) in questo progetto danno il via ad un prototipo informale. Ciò porta ad ottenere una prima versione del software che, dopo essere stato presentato, permetterà di ottenere informazioni e consigli da persone esterne.
+	
+	
+- Care and feeding of FOSS
+	1. Invention: Qualcuno presenta un'idea e la si fa lavorare
+	2. Expansion and Innovation: il mondo se ne accorge e la tecnologia inizia a prendere piede.
+	3. Consolidation: Alcuni progetti diventano dominanti mentre gli altri vengono assorbiti al loro.
+	4. Maturity: mercato ridotto a pochi prodotti dominanti, difficile per nuove aziende dello stesso tipo di entrare nel mercato
+	5. FOSS Domination: con il rallentamento dell'innovazione la community FOSS va a erodere la leadership detenuta dalle soluzioni commerciali.
+	6. The FOSS era: Le versioni FOSS dominano su quelle a pagamento.
+	
+	
+- Emerging Economic Paradigm of Open Source:
+	Tutto ciò che mi permette di diminuire i costi è "buono".
+	Distinguiamo due tipi di tecnologie ovvero quella `Differenziante`, che mi da un vantaggio competitivo, e quella `Non differenziante`.
+	
+	
+Nel mondo Open Source vari problemi diventano enormi:
+- modello a cascata: fase a se stante, dopo aver sviluppato tutti i componenti li compiliamo insieme
+- modello microsoft: alla fine di ogni giornata, ogni sviluppatore che ha scritto un certo numero di linee di codice, doveva garantire che quel codice poteva essere ricompilato a tutto il resto con obiettivo di sincronizzare e stabilizzare il tutto, chi causava il fallimento della compilazione veniva linciato (joke ma non del tutto).
+- modello XP: più volte al giorno escludendosi a vicenda
+- FLOSS: Continuamente e senza coordinazione e controllo, ciò può portare ad avere un prodotto totalmente diverso da un giorno all'altro.
+
+Come facciamo con la comunicazione? Attraverso strumenti specifici di supporto
+
+---
+# Lezione_6
 ## Strumenti di supporto
 
 Vanno dalla comunicazione: quindi internet o forum, alla sincronizzazione del lavoro e versioning fino all’automazione della build e al bug tracking.
@@ -304,6 +362,10 @@ git reset che parte dal local repo, aggiorna e sovrascrive gli index con quello 
 ## Branch
 
 Creare dei branch è praticamente obbligatorio, quando cloniamo siamo già in presenza di due branch: Main e remote main.
+
+```code
+git branch -b nome_branch
+```
 
 La prima branch non vale come main effettivo, infatti il vero e proprio “main” sarà quello su cui verrà eseguito il primo commit; i branch si usano soprattutto in un workflow molto grande.
 
@@ -375,10 +437,16 @@ Altri rami sono:
     
 - `Support`: aperto quando devo fixare dei bug in una versione vecchia del software senza andare ad intaccare la nuova versione (ad esempio viene presentato un bug della versione 1.1 ma siamo già alla v2.0).
     
+#### Git-flow dimenticanze
+1. `Mi sono dimenticato di aprire la feature`:  semplicemente apro la feature (se non ho fatto commit i cambiamenti potranno essere committati direttamente li);
+2. `Commit rosso ma ho modificato altro`: amend selezionando da intellij;
+3. `Commit rosso senza aver aperto la feature`:
+
+
 
 ### Git request-pull
 
-### Fork
+#### Fork
 
 Va a risolvere il problema delle autorizzazioni
 
@@ -412,7 +480,7 @@ pensato per la definizione di scripting, utilizzato per builds multi progetto, v
 ## Interfaccia e polimorfismo
 
 # Lezione_8
-## `Bug tracking`
+## Bug tracking
 
 Tengono traccia e gestiscono tutte le segnalazioni  sui difetti di un software.
 Hanno centralizzato le segnalazioni in modo tale da impedire il moltiplicarsi delle stesse. 
@@ -463,7 +531,7 @@ violazione dell'incapsulation, porta alla bocciatura diretta (kek)
 ### Collegamento dinamico ed extensibility
 Permette di chiamare codice non ancora scritto, così facendo non serve modificare il codice per permettergli di richiamare metodi di una nuova classe (da qui extensibility)
 
-### Esempiop di diagramma delle classi UML
+### Esempio di diagramma delle classi UML
 tutti gli elementi presenti all'interno dell'interfaccia devono essere astratti.
 - classi
 	- attributi
@@ -487,30 +555,119 @@ Sono situazioni comuni che posso ritrovare nei pattern:
 Identifica due metodi:
 - **HookMethod**: determina il comportamento specifico nelle sottoclassi, il _punto caldo_ in cui posso intervenire per personalizzare e/o adattare lo schema;
 - **TemplateMethod**: mette insieme diversi punti caldi (scheletro), è l'_elemento freddo_ ovvero quello che non varia;
+```mermaid
+graph
+id1(meta-patterns)
+id1.1(HookMethod)
+id1.2(TemplateMethod)
+id1 --divisi_in--> id1.1 & id1.2
+id1.2 --scheletro_dei--> id1.1
+```
 
 _`Come si relazionano?`_
 
 - **Unification**: si trovano nella stessa classe del framework
-- **Connection**: quando sono in classi separate che vengono collegate tramite una associazione.
-- **Recursive Connection**:sono in classi tra loro collegate anche tramite relazione di gerarchizzazione.
+- **Connection**: quando sono in classi separate che vengono collegate tramite una associazione; la classe hook(astratta) viene chiamata come istanza nella classe template.
+- **Recursive Connection**: sono in classi tra loro collegate anche tramite relazione di gerarchizzazione: classe template è una hook class.
+
+``` mermaid
+classDiagram
+	TemplateHookClass:hookMethod()
+	TemplateHookClass:templateMethod()
+	TemplateClass:templateMethod()
+	HookClass:hookMethod()
+	TemplateClass --|> HookClass
+	TemplateClass *--> HookClass
+	
+```
 
 Abbiamo tre categorie principali di pattern:
 - **Creazionali**: risolvono problemi attraverso la creazione di oggetti
 - **Comportamentali**: problemi di dinamicità dell'interazione tra oggetti
 - **Strutturali**: problemi riguardanti la struttura statica delle classi/oggetti.
+```mermaid
+	graph LR
+	Pattern --> Creazionali & Comportamentali & Strutturali
+		Creazionali --> Creano_oggetti
+		
+		Comportamentali-->Interazione_tra_oggetti
+		
+		Strutturali-->Composizione_di_classi_e_oggetti
+```
 
 
-#### Singleton Pattern
+### Singleton Pattern
 Utilizzano solo oggetti e non classi cercando di rendere la classe responsabile del fatto che non può esistere più di una istanza.
-è Teoricamente giusto
 
+
+```java
+public class Singleton {
+/* costruttore privato o comunque non pubblico*/
+protected Singleton(){...}
+
+/* salvo l'istanza per usarla dopo*/
+private static Singleton instance = null;
+
+/*metodo statico*/
+public static Singleton getInstance(){
+if(instance == null) {
+instance = new Singleton();
+}
+return instance;
+}
+
+public void metodoIstanza(){...}
+}
+```
+Utilizzo Double Check per poter evitare che si creino più copie dell'istanza (per via di processi concorrenti) e mantenendo alte le prestazioni che calerebbero con il solo utilizzo di `@Synchronized`.
+
+```java
+public class Singleton {
+/* costruttore privato o comunque non pubblico*/
+protected Singleton(){...}
+
+/* salvo l'istanza per usarla dopo*/
+private static Singleton instance = null;
+
+/*metodo statico*/
+public static Singleton getInstance(){
+if(instance == null) {
+	synchronized(Singleton.class){
+	if (instance == null)
+		instance= new Singleton();
+	}
+}
+return instance;
+}
+
+public void metodoIstanza(){...}
+}
+```
+è corretto concettualmente ma
 #### Singleton Java Idiom
-Questo va a sfruttare che i campi degli enumerativi possono essere creati tramite degli oggetti costanti creati al momento del loro primo uso. è definito Idioma poiché soluzione dipendente da uno specifico linguaggio.
-Non è di norm leggibile ma molto riconoscibile.
+Gli idiomi vengono creati in modo differente per ogni linguaggio, in java utilizziamo `enum`, un enumerativo che ha come unico valore l'istanza; ciò permette (come nei singleton) di andare a creare una sola istanza  a cui dovranno accedere tutti. è inoltre thread safe, poiché la concorrenza viene gestita internamente da java.
+è definito Idioma poiché soluzione dipendente da uno specifico linguaggio.
+Il Singleton deve però essere usato con cautela poiché viola alcuni dei principi `SOLID` e può essere sostituito da altri elementi in base alla circostanza.
+```java
+enum Singleton {
+INSTANCE;
+public IstanceMethod(){}
+}
+Singleton.INSTANCE.sampleOp();
+```
 
 ### Iterator pattern
 Permette di accedere agli elementi di un oggetto aggregatore in maniera sequenziale senza dover esporre la rappresentazione interna.
+```java
+class MyClass implement Iterable<T>{
 
+	public Iterator<T> iterator(){
+	    return new Arraylist<>(nomeLista).iterator() //piace al bellettini;
+		//meglio questo sopra
+		return Collections.UnmodifiableList(nomeLista).iterator();
+	}
+}
+```
 
 # Lezione_10
 
@@ -565,14 +722,30 @@ else
 
 
 ## Mocking
-`Test Double` 
+`SUT`: System Under Test (è la parte di sistema che stiamo testando)
+
+```mermaid
+graph TD
+SET_UP -->EXERCISE
+EXERCISE-->VERIFY
+VERIFY-->TEARDOWN
+```
+
+
+### `Test Double` 
 Il doppione (non intende doppia precisione).
-Il doppione viene creato quando necessitiamo di un sostituto del DOC -> dependent on component che:
+Il doppione viene creato quando necessitiamo di un sostituto del `DOC` -> dependent on component che:
 - è ancora in fase di sviluppo
 - fornisce dati non deterministici o prevedibili
 - può presentare situazioni non facilmente riproducibili (tipo errori di trasmissione o esaurimento di memoria)
 - la funzione è lenta
 -  o semplicemente se si vuole testare il SUT -> System under test senza correre il rischio che il DOC introduca errori.
+
+Il mocking è ciò che ci permette di sostituire i DOC reali con i vari test double
+
+**Regole:**
+- Il test di unità deve contenere un unico oggetto (componente reale, quindi unica `new` );
+- Bisogna utilizzare il mockiang facendo attenzione a non mockare classi di librerie standard (come list).
 
 - ##### Dummy objects
 	Sono oggetti passati in giro ma mai veramente usati quando:
@@ -580,26 +753,245 @@ Il doppione viene creato quando necessitiamo di un sostituto del DOC -> dependen
 	- potrei avere solo una interfaccia e non una classe
 	- potrei avere solo costruttori complessi
 	Non mi interessano tutti i valori dati a questo oggetto, ne creo quindi uno fittizio.
+	
+	```java
+	@Test
+	public void testDummy(){
+	MyClass dummy = mock(MyClass.class);
+	
+	List<MyClass> SUT = new ArrayList<MyClass>();
+	
+	SUT.add(dummy);
+	
+	assertThat(SUT.size()).isEqualTo(1);
+	}
+	```
+	
 - ##### Stub Objects
-	Oggetti che forniscono delle risposte preconfezionate alle sole chiamate fatte durante il testing
+	Oggetti che forniscono delle risposte preconfezionate alle sole chiamate fatte durante il testing. Permette al test di forzare la realizzazione di scenari particolari o di specifico interesse.
+	
+	>[[!Warning]]
+	I test non devono mai essere più complicati della funzione che stanno testando, in caso ci si può appoggiare ad altri test.
+	
+- ##### Mock Objects (mockito)
+	Simile allo stub ma in questo caso andiamo a controllare gli _**Output Indiretti**_ del SUT, ovvero chiamate a metodi di un altro componente, record inseriti in un database o record scritti su file.
+	I mock sono quindi dei punti di osservazione che intercettano gli input indiretti e li verificano.
+	
 - ##### Spy Objects
-	Si prende un oggetto esistente e lo si circonda, wrappandolo, con oggetti che ne permettano l'utilizzo come mock
+	Si prende un oggetto esistente e lo si circonda, wrappandolo, con oggetti che ne permettano l'utilizzo come mock. Li utilizziamo quando la classe non può essere considerata come blackbox, permettendoci di testare solo elementi pubblici e non privati.
+	
 - ##### Fake objects
 	Non potrò mai usarli in produzione (esempio database), utili quando sfrutto per poco tempo le capacità del codice, non sono da costruire ma sono già presenti.
 	Inefficiente per casi troppo grandi.
+	
 
 ### Mockito
-Esempi: (da mettere)
+Framework di testing open source, presenta:
+- mock(): che ci permette di creare stub, mock o dummy
+- spy():  si ottiene uno spy object partendo da uno reale,può però essere utilizzato per fare il tracciamento delle chiamate ai suoi metodi.
+- constructor mock:
+	```java 
+	try(var sube =Mockito.mockConstruction(Giocatore.class)){...}
+```
 
 #### Stubbing
+
+per metodi che fanno il return di qualche cosa:
 ```java
 when(mockedObj).methodname(args).thenXXX(values);
 ```
+per metodi void:
 ```java
 doXXX(values).when(mockedObj).methodname(args)
 //funziona con metodi che ritornano void
+```
+#### Injection
+Con questa funzionalità di mockito noi possiamo andare ad iniettare all'interno di un oggetto reale, un oggetto mockato di cui necessitiamo la presenza, ovviamente dovremo fare opportuni stub essendo i metodi dell'oggetto mockato settati con un valore di ritorno di default.
+
+```java
+@ExtendWith(MockitoExtension.class);
+class test{
+@Mock Classe mockedClass;
+@InjectMocks ClasseInCuiIniettare nomeClasse;
+@Test
+}
 ```
 
 #### Chain of responsibility
 Mi permette di togliere da una classe una certa responsabilità, devo avere la possibilità
 Nel chain of responsibility il cliente conosce solo la cima della catena non il resto.
+
+```java
+public @NotNull PokerHand.HandRank handEvaluator(@NotNull PokerHand pokerHand) {
+if (isATris(pokerHand))
+	return PokerHand.HandRank.THREE_OF_A_KIND;
+return next.handEvaluator(pokerHand);
+}
+```
+
+# Lezione_11
+## Duck_saga
+#### Pattern strategy
+Abbiamo una famiglia di algoritmi/funzioni, il pattern li rende quindi intercambiabili tra loro tramite encapsulation (posso usare o uno o l'altro)
+### Adapter Pattern
+
+#### Class adapter
+
+#### Object adapter
+
+## Facade pattern
+fornisce un'interfaccia unificata e semplificata a un insieme di interfacce separate
+#### Composite Pattern
+Gestisce strutture ad albero per rappresentare gerarchie di parti e insieme uniformemente
+Pattern nati durante la creazione di GUI
+
+#### Decorator Pattern
+aggiungere nuove funzionalità o caratteristiche dinamicamente 
+##### Card decorator(esempio)
+Possiamo considerare decorator un draw che printa le carte pescate.
+
+# Lezione_13
+(nella lezione 12 sono stati fatte correzioni del laboratorio precedente)
+
+### Soluzioni semplici da evitare
+1. Non è giusto creare una classe per ogni possibile combinazione di decorazioni
+2. Antipattern God class, creare un boolean per fare il check di ogni possibile classe
+
+```mermaid
+classDiagram
+class CardSource
+CardSource: +draw()
+CardSource: +isEmpty()
+Decorator: method(CardSource)
+CardSource --> Decorator
+CardSource <|--* Decorator
+Decorator <-- logDecorator
+Decorator <-- memoDecorator
+```
+Utilizziamo Decorator come classe astratta perché ci permette di usare un unico pezzo di codice per differenti lavori. La fattorizzazione aggiunge leggibilità, evitandoci problemi quando questo codice da errore.
+
+- **Versione_1**:
+	```java
+	public abstract class Decorator implements CardSource{
+		private final CardSource element;
+		
+		public Decorator(CardSource cardSource) {
+			assert element != null;
+			this.element = element;
+		}
+		
+		@Override
+		public Card draw(){
+			return element.draw(); // non voglio cambiare draw();
+		}
+		
+		@Override
+		public boolean isEmpty() {
+			return element.isEmpty();
+		}
+	
+	}
+	```
+	aggiungo poi le classi che estendono il decorator
+
+- **Versione_2**:
+	creo classi separatamente, vedo se hanno qualcosa in comune, fattorizzo e vedo se c'è altro in comune.
+	```java
+	public abstract class Decorator implements CardSource{
+		private final CardSource element;
+		
+		public Decorator(CardSource cardSource) {
+			assert element != null;
+			this.element = element;
+		}
+		
+		@Override
+		public Card draw(){
+			Card card = element.draw()
+			decorationAction(card);
+			return card;
+		}
+		
+		@Override
+		public boolean isEmpty() {
+			return element.isEmpty();
+		}
+		
+		protected void decorationAction(@NotNull Card card){}
+	}
+```
+
+Per risolvere i problemi di stato presenti in queste versioni possiamo andarlo ad estrarre lo stato nella parte comune
+
+## Observer_Pattern
+
+### Observer: Push
+### Observer: Pull
+(da vedere sugli appunti pronti)
+
+
+L'interface Observer avrà alcuni metodi che dovranno essere implementeati:
+- getState
+- setTemp (va a modificare il valore quindi notificheremo)
+- notifyObservers()
+- addObserver() alla lista di osservatori
+- removeObserver()
+
+## Come identifichiamo classi e relazioni
+- TDD e pattern
+- Noun Extraction:
+	Parte dalle specifiche scritte in linguaggio naturale e come useStory o useCase, si estraggono i sostantivi, consideriamo i vari candidati e iniziamo a sfoltire; infine iniziamo a identificare le varie relazioni.
+	- Criteri di sfoltimento sono: 
+		1. ridondanza
+		2. vaghezza, nomi generici (scartarli ma non troppo)
+		3. nomi di eventi e operazioni
+		4. metalinguaggio: sistema, regole...
+		Le generalizzazioni posso utilizzarle come parametrizzazioni, magari alcune cose simili hanno metodi aggiunti o differenti di altri. Posso anche prendere in prestito elementi scartati
+
+----Fine primo compitino---
+# Lezione_15
+## Stato
+- Concreto --> Dipende dalla sua implementazione
+- Astratto --> sottoinsieme arbitrario degli stati concreti
+_**Casi particolari**_
+- oggetti senza stato --> stateless objects --> astrazioni funzionali
+- oggetti che hanno un solo stato --> oggetti immutabili 
+### State Diagram
+Automa a stati finiti
+--> _S0_ stato iniziale
+#### esempio
+![[images/Screenshot 2024-11-13 alle 16.30.48.png]]
+- **Mealy** --> uscite dipendono da stato raggiunto e da come
+- **Moore** --> uscite dipendono solo Dallo stato raggiunto
+
+### UML
+Deriva da stateCharts
+#### Esempio Classe Copia
+disponibile e in prestito --> alcuni (non tutti) degli stati completi
+```mermaid
+graph LR
+inPrestito --restituisci()/book.restituito(this) --> disponibile
+disponibile --prendiInPrestito()/book.presoInPrestito(this) --> inPrestito
+```
+stato --> stimolo --> nuovo stato
+#### Guardie
+Utilizzate per disambiguare le transizioni causate da uno stesso evento e uscenti da stesso stato
+
+#### Superstate
+In un super stato vado ad inserire un sotto diagramma
+La definizione di superstato la vediamo riadattata nella concorrenza, dove differenti superstati 
+
+### State Pattern
+modelliamo i cambiamenti di comportamento al cambiare dello stato dell'oggetto
+```java
+public class Context {
+private State state;
+public void setState(@NotNull State s){
+state=s;
+}
+public void sampleOperation() {
+state.sampleOperation(this);
+}
+}
+```
+

@@ -1,4 +1,4 @@
-
+ 
 # Reti di calcolatori
 
 
@@ -196,8 +196,8 @@ Gli Indirizzi IP sono divisi in diverse categorie ma principalmente abbia:
 	- Classe E
 	La differenza tra questi si ha da A -> C, infatti scendendo di classe diminuirà la quantità di hostId presenti, meno HostId = molti più NetId presenti in rete.
 Problema di queste classi è lo spreco che si andrebbe ad ottenere a causa della staticità dei blocchi.
-Ci sono due modi per andare a risolvere questo problema:[[
-]]1. organizzativo tramite **_Subnetting_**, va ad eliminare totalmente l'idea di organizzazione iniziale
+Ci sono due modi per andare a risolvere questo problema:
+1. organizzativo tramite **_Subnetting_**, va ad eliminare totalmente l'idea di organizzazione iniziale
 2. Operativo:
 	1. **_NAT_**
 	2. **_CIDR_**: (Class-Less Intern Domain Routing)
@@ -444,6 +444,7 @@ Le code di ingresso provenienti da router con lavori simili vengono gestiti dal 
 
 ##### Token Bucket
 abbiamo un token generator che produce token in un tempo R e li mette in un bucket, se il token non è presente nella pipe allora il pacchetto resterà in attesa fino all'arrivo.
+<<<<<<< HEAD
 All'inizio invece il bucket può essere riempito di token che ci permetterà di aumentare il traffico di ingresso fino a tornare alla normale velocità di produzione. Ciò è detto traffic shaping.
 
 ---
@@ -518,3 +519,6 @@ Connessione tra due host aperta con successo (a) e connessione rara che avviene 
 Qualsiasi segmento può essere perso provocando errori:
 **SYN perso = nulla**, non ho aperto la connessione, ma A non sa cosa sia successo.Esiste però un timer che scaduto un certo quantitativo di tempo ri-iniziallizza la connessione con un valore diverso per evitare hard-guessing, il timer vale anche per l'acknowledgment, allo scadere dell'ack viene mandato un nuovo ack. Se nonostante il timer non si riceva un segnale viene chiusa la connessione
 **SYN flood**, utilizzato per fare port scanning
+=======
+All'inizio invece il bucket può essere riempito di token che ci permetterà di aumentare il traffico di ingresso fino a tornare alla normale velocità di produzione. Ciò è detto traffic shaping.
+>>>>>>> main
