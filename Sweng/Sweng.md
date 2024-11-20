@@ -994,4 +994,48 @@ state.sampleOperation(this);
 }
 }
 ```
+### Builder Pattern
+- Telescopic constructor:
+	- creo tanti costruttori quante sono le variabili (dal costruttore solo per il parametro obbligatorio a quello con anche tutti i parametri opzionali)
+-  Java beans:
+	- vado ad aggiungere i field attraverso metodi aggiuntivi
+		- problema principale riguarda proprio i metodi che sono **Setter**
+- Static Method factory:
+	- Ho un costruttore privato e vado ad utilizzare dei metodi statici
+- Single responsibility:
+- Liskov Principle
+- Interface Segregation
+- Dependency inversion:
+	- Astrazioni non dovrebbero dipendere dai dettagli
+	- Si punta a programmare verso interfacce
 
+Dentro una classe qualsiasi è presente una classe Builder
+
+### Use Cases
+colleghiamo gli attori con gli use cases.
+- Attori: qualcuno o qualcosa con cui voglio dialogare
+
+#### Come Identifico gli use cases?
+- partendo dagli attori
+	- Cosa fanno?
+	- Cosa vogliono?
+Dopo aver capito chi sono gli attori e quali use cases servono faccio le Associazioni
+1 attore ad almeno uno use case 
+
+##### Generalizzazione
+Può avvenire tra attori e use cases:
+- Tra attori
+	- andiamo ad esplicitare relazioni tra ruoli (StaffMember -> LibraryMember)
+- Use cases
+	- simile ad extends
+
+
+---
+## Verifica e convalida
+### Terminologia: malfunzionamento
+Funzionamento non corretto del programma rispetto (all'utente o alle specifica) rispetto all'esterno, quindi al programma non al suo codice
+### Terminologia: difetto
+Difetto o anomalia riguarda il **Codice** ed è condizione necessaria per il verificarsi di un malfunzionamento
+
+### Terminologia: sbaglio
+Causa dell'anomalia, spesso errore umano (concettuale, battitura o di scarsa conoscenza del linguaggio)
