@@ -444,7 +444,6 @@ Le code di ingresso provenienti da router con lavori simili vengono gestiti dal 
 
 ##### Token Bucket
 abbiamo un token generator che produce token in un tempo R e li mette in un bucket, se il token non è presente nella pipe allora il pacchetto resterà in attesa fino all'arrivo.
-<<<<<<< HEAD
 All'inizio invece il bucket può essere riempito di token che ci permetterà di aumentare il traffico di ingresso fino a tornare alla normale velocità di produzione. Ciò è detto traffic shaping.
 
 ---
@@ -522,3 +521,56 @@ Qualsiasi segmento può essere perso provocando errori:
 **SYN flood**, utilizzato per fare port scanning
 All'inizio invece il bucket può essere riempito di token che ci permetterà di aumentare il traffico di ingresso fino a tornare alla normale velocità di produzione. Ciò è detto traffic shaping.
 
+## Lezione_2
+Max segment size --> standard 536 byte
+**Esempio**
+	**MSS**= 500 BYTE
+	**AP** scrive 2000 BYTE nel SB
+	**Buf** Sending (socket) svuota SB
+	Ricevuto l'ack posso passare al segmento successivo ed eliminare il segmento 1 appena inviato e ricevuto.
+```mermaid
+sequenceDiagram
+SB -->> A: Send segment 1
+A -) B: Seq = x (x -> x+499)
+create participant RB
+B -->> RB:Stored segment 1 (Sna = x + 500)
+B --) A: ACK ack = x+500
+destroy SB
+SB -->> A: Send segment 2
+A -) B: Seq = x+500
+destroy RB
+B -->> RB: Stored segment 2 (Sna = x + 1000)
+B --) A: ACK ack = x+1000
+```
+#### Secondo grafo
+
+```mermaid
+sequenceDiagram
+A -) B: seq = X,Push Data= "L"
+B --) A: ACK ack=X+1
+B --) A: seq=Y PSH Data= "L"
+A -) B: ACK ack=Y+1
+```
+#### Delayed ACK (Gourmet)
+```mermaid
+sequenceDiagram
+A -)+B: Seq=X PSH Data="L"
+note right of B:200ms
+B --)-A: Seq=Y,PSH,Data="L",ACK ack=x+1
+activate A
+note left of A: 200ms
+A -)-B: Seq= x+1,PSH,ACK,Data="S", ack= y+1
+```
+I 200ms sono il tempo massimo di risposta al cui scadere viene inviato un segnale ACK con numero randomico differente.
+
+#### Nagle
+```mermaid
+sequenceDiagram
+participant A
+note left of A: nel buffer sono presenti [L,-, ,S,L]
+A -)+B: Seq=X,PSH,Data="L"
+note right of B: 200ms
+B --)-A: Seq=Y,PSH,Data="L",ACK, ack=X+1
+A -) B: Seq=X+1,PSH,Data="S -L",ACK,ack=Y+1
+B --) A: ACK=1, ack=x+5
+```
