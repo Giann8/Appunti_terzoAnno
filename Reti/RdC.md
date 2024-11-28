@@ -593,3 +593,19 @@ RTTVAR = (1 - B)RTTVAR + B |SRTT - R|=3/4•24 + 1/4|48ms-32ms|=22ms
 SRTT = (1-alfa)SRTT + alfaR = 7/8•48 + 1/8•32 = 46ms
 RTO = SRTT + 4• RTTVAR = 42ms + 4 • 22ms =130ms
 
+
+### Congestione
+Avviene quando un canale tra A e B viene obbligato a inviare e ricevere diversi messaggi in un certo ordine, ciò va a diminuire la velocità di invio dei messaggi.
+#### Perdita pacchetti
+- ACK duplicato "Lieve", qualcosa non è andato bene ma comunque ricevo altri dati
+- RTO evento "severa"
+All'inizio della connessione abbiamo il Three hand shake.
+Come unica informazione riguardo la velocità abbiamo la window size, sappiamo inoltre la dimensione del MSS.
+Prendiamo come riferimento il Wc (congested window).
+Utilizzando la congested Window la finestra incrementerà esponenzialmente ($2^n$ dove $n = segnali\space inviati$ )
+
+##### Fasi
+- 1° fase **Slow Start**: raddoppia per ogni finestra ricevuta.
+- 2° fase **Congestion Avoidance**: +1 per ogni finestra corretta
+- 3° fase **Costante**:
+	![[Images/Grafo_Tcp_congestion.png]]
