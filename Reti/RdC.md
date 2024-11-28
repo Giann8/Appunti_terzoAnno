@@ -609,3 +609,36 @@ Utilizzando la congested Window la finestra incrementerà esponenzialmente ($2^n
 - 2° fase **Congestion Avoidance**: +1 per ogni finestra corretta
 - 3° fase **Costante**:
 	![[Images/Grafo_Tcp_congestion.png]]
+
+Implementiamo una funzionalità di **Fast Recovery** a fronte di un fast retransmit
+Il grafo sotto rappresenta ciò che avviene quando incontriamo una situazione di congestione leggera.
+
+![[Images/Ack_received_congestion.png]]
+
+Possiamo utilizzare le tecniche di fast recovery e fast retransmit tramite la valutazione del RTO, gestendo la finestra allo scadere del timer.
+
+![[RTO_fast_recovery.png]]
+
+#### Option selective ACK permitted
+A invia i segmenti da 1-6 a B, questo non riceve però i segmenti 3 e 5, invia quindi i segnali ACK di 1 2 poi, dovendo saltare 3, fa inviare da 2 un Selective ACK di 3 a 4 in modo da "coprire" i buchi, infine non potendo inviare un segnale per il segmento 5 (non ricevuto) 2 invierà un SACK anche di 5.
+
+##### Explicit Congestion Notification
+La rete deve ricevere una notifica quando si presenta una certa congestione, viene quindi utilizzata una ECN.
+L'ECN è rappresentato da una coppia di bit che rappresentano rispettivamente:
+- 00 -> Not ECN-Cabable transport, non possiamo individuare se c'è una congestione
+- 01 -> ECN Capable Transport 1, ECT 1, pacchetto marchiato 11
+- 10 -> ECN Capable Transport 0, ECT 0
+- 11 -> experienced  Congestion
+
+```mermaid
+graph LR;
+R1((R1))
+R2((R2))
+R3((R3))
+A---R1
+Congestion-->R1
+R1---R2
+R2---R3
+R3---B
+```
+B poi invia ad A i segnali ACK ed ECE, ECN Echo ovvero segnala la presenza di congestione in ECN ip 11, Wc viene quindi ridotta, ricevuto il ECN viene settato a 1 il CWR per confermare la ricezione, in modo da poter far operare B in modo più cauto.
