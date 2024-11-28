@@ -575,3 +575,21 @@ B --)-A: Seq=Y,PSH,Data="L",ACK, ack=X+1
 A -) B: Seq=X+1,PSH,Data="S -L",ACK,ack=Y+1
 B --) A: ACK=1, ack=x+5
 ```
+
+### Round trip-time (RTT)
+#### 1 RTT
+SRTT = RTT
+RTTVAR = RTT/2
+RTO = RTT + 4*RTTVAR
+
+RTT = 48 ms
+SRTT = 48 ms
+RTTVAR = R/2 = 24ms
+RTO = 48+4•24 =144ms
+
+#### 2 RTT
+RTT = 32 ms
+RTTVAR = (1 - B)RTTVAR + B |SRTT - R|=3/4•24 + 1/4|48ms-32ms|=22ms
+SRTT = (1-alfa)SRTT + alfaR = 7/8•48 + 1/8•32 = 46ms
+RTO = SRTT + 4• RTTVAR = 42ms + 4 • 22ms =130ms
+
