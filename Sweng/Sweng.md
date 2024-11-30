@@ -1039,3 +1039,44 @@ Difetto o anomalia riguarda il **Codice** ed è condizione necessaria per il ver
 
 ### Terminologia: sbaglio
 Causa dell'anomalia, spesso errore umano (concettuale, battitura o di scarsa conoscenza del linguaggio)
+
+# Testing
+## Correttezza di un programma
+Un test ha **`Successo`** quando rileva uno o più malfunzionamenti, è formati da elementi $t$ detti casi di test.
+$T$ è ideale per $P$ se il non successo del test nel programma implica che il programma funziona, ovvero il superamento del test implica la correttezza del programma.
+
+#### Tesi di Dijkstra
+il test di un programma può rilevare la presenza di malfunzionamenti ma non dimostrarne l'assenza. 
+$T = D$ non va considerato.
+
+#### Criterio di selezione
+Dobbiamo selezionare un criterio che si riveli essere:
+- **Affidabile**: se presi n $T$, in base a tale criterio C allora o hanno tutti successo o nessuno ha successo.
+- **Valido**: almeno uno dei due test, se $P$ non fosse corretto, ha successo.
+Se prendiamo un test selezionato in base a un criterio affidabile e valido e il test non trova errori allora il programma è corretto, vorrebbe dire che il test seleziona test ideali, che però non possono esistere
+
+#### Come Ragionare?
+Dobbiamo capire quanto le caratteristiche, che rendono utile un caso di test, soddisfano e rendono significativo questo test.
+Ciò ci permette di definire una copertura con cui:
+- decidere quando smettere;
+- decidere quale altro caso di test è opportuno aggiungere;
+- confrontare bontà (quantità di copertura di un criterio) di test differenti.
+
+#### Quando si verifica un malfunzionamento?
+Un malfunzionamento si verifica quando ho anomalie all'interno del codice, più precisamente per identificarlo devo:
+1. eseguire un comando che contiene l'anomalia
+2. l'esecuzione di tale anomalia deve portare il sistema in uno stato errato
+3. lo stato errato deve propagarsi fino all'uscita del codice esaminato
+##### copertura dei comandi
+un test T soddisfa il criterio di copertura dei comandi se e solo se ogni comando eseguibile del programma è eseguito in corrispondenza di almeno un caso di test $t$ in $T$, la percentuale spesso può essere non del 100% non perché non copriamo tutti i comandi ma perché abbiamo fatto una soluzione che viola il tdd andando a scrivere cose non utili a far passare il test.
+Coprire i comandi non vuol dire trovare i malfunzionamenti.
+##### Copertura delle decisioni
+Implica la copertura dei comandi.
+è soddisfatto se e solo se  ogni decisione effettiva viene resa sia vera che falsa in corrispondenza di almeno n caso di test $t$ in $T$.
+(Nel grafo) se ho un comando con **Almeno** una freccia entrante allora devo coprire il comando, ma se copro tutte le frecce allora per forza coprirò tutti i comandi.
+
+##### Copertura delle condizioni
+Soddisfatta se $T$ rende sia vera che falsa tutte le condizioni in corrispondenza di almeno un caso di test.
+`Non implica le precedenti`
+
+##### Copertura delle condizioni e delle decisioni
