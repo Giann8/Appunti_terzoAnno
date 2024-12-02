@@ -1080,3 +1080,15 @@ Soddisfatta se $T$ rende sia vera che falsa tutte le condizioni in corrispondenz
 `Non implica le precedenti`
 
 ##### Copertura delle condizioni e delle decisioni
+---
+
+
+##### Criterio copertura definizioni
+
+### Analisi mutazionale
+Vengono generati dei programmi $II$ simili al programma in esame sui quali viene eseguito lo stesso test previsto per il programma $P$, in caso questo fosse corretto allora i programmi $II$ devono essere sbagliati.
+Come faccio a generarli?
+#### Generazione mutanti
+Devono essere tanti, facilmente generabili e con piccole differenze.
+Utilizzo gli `Operatori mutanti` funzioni che dato $P$ generano uno o più mutanti, i più semplici vanno ad effettuare modifiche che comportino effettive modifiche semantiche ma non errori sintattici bloccati in compilazione.
+Esistono poi gli **HOM**(High Order Mutation) che vanno ad effettuare più modifiche insieme, sono però più difficili da identificare rispetto a più modifiche prese singolarmente.(un esempio di mutazione possono essere le classi di operatori)
