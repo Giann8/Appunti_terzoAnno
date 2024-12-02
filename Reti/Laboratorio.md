@@ -1,10 +1,10 @@
-# Lezione_1
+# Lezione_2
 
 (consiglia di non usare apparati di rete cisco)
 cge - Gigabit ethernet
 
 ---
-# Lezione_2
+# Lezione_3
 Se ho apparati di livello uguale utilizzo la tipologia cross, altrimenti straight.
 
 ![[../Images/Lab_reti2.png]]
@@ -133,14 +133,27 @@ show ip protocol
 ip address 192.168.0.1 255.255.255.0
 accendere interfaccia
 
-se vogliamo avere due vlan su una sola interfacccia (router cfe) possiamo creare una sotto interfaccia con ```
+se vogliamo avere due vlan su una sola interfaccia (router cfe) possiamo creare delle sotto interfacce.
+Mettere in trunk il cavo
 
 ```
-encapsulation dot1q vlanId
 interface fastEthernet 0/0.10
+encapsulation dot1q vlanId
+ip address 192.168.0.1 255.255.255.0
 no shutdown
 ```
 Infine andiamo a ad accendere l'intera interfaccia.
+
+# Lezione_8
+## Configurazione server DHCP
+Iniziamo aggiungendo un server nella VLAN
+
+# Lezione_9
+Le sottoreti tra i router possono contenere solo 4 indirizzi ip che permettono ovvero quelli che servono per i due router, il bcast e l'indirizzo base.
+L'admin deve istruire l'apparato riguardo il passaggio delle sottoreti, definendo eventuali output interface in modo da istruire alcuni apparati riguardo apparati lontani.
+
+`passive-interface` serve a non far mandare le informazioni verso un certo route
+
 # Esercizi
 ### Lezione_5
 1. Conversioni
