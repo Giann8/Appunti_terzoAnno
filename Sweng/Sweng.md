@@ -1092,3 +1092,39 @@ Come faccio a generarli?
 Devono essere tanti, facilmente generabili e con piccole differenze.
 Utilizzo gli `Operatori mutanti` funzioni che dato $P$ generano uno o più mutanti, i più semplici vanno ad effettuare modifiche che comportino effettive modifiche semantiche ma non errori sintattici bloccati in compilazione.
 Esistono poi gli **HOM**(High Order Mutation) che vanno ad effettuare più modifiche insieme, sono però più difficili da identificare rispetto a più modifiche prese singolarmente.(un esempio di mutazione possono essere le classi di operatori)
+
+### Ruoli
+#### Moderatori:
+Coordinano, controllando il processo tra `Readers` e `Testers`
+
+#### Readers:
+Leggono il codice e lo `Parafrasano`
+
+#### Testers:
+Leggono il codice e cercano i difetti
+
+#### Autore:
+Partecipante passivo che va a rispondere ad eventuali domande.
+
+### Debugging
+Lo utilizziamo per rimuovere anomalie, non per rilevare malfunzionamenti, prima di fare il debugging meglio controllare che non siano sbagliate le specifiche.
+
+# Reti di petri
+Simili a macchine a stati finiti, nascono per descrivere sistemi concorrenti, cambiano concetto di stato e di transizione:
+- stato: viene visto come composizione di stati iniziali
+- transizione:risultante dello spostamento da uno stato all'altro (?)
+
+## Informalmente
+Sono composte da **Posti** (cerchi), **Transizioni**(rettangoli), **Archi**(connettono posti a transizioni e viceversa),**Gettoni**, quando scatta la transizione i gettoni si spostano.
+
+## Formalmente
+una rete di petri è una 5-upla $[P,T,F,W,M_0]$ dove:
+- $P$ Insieme dei posti
+- $T$ Insieme delle transizioni
+- $F$ relazione di flusso $F$ sottoinsieme di $(P*T)U(T*P)$
+- $W$ la funzione peso
+- $M_0$ la funzione marcatura (iniziale)
+### Comportamento dinamico
+$tT$  è abilitata in M se e solo se per ogni $/perogni p appartenente a pre(t) M(p)>=W(<p,t>)$
+lo scatto di una transizione t in una marcatura $M$ produce una nuova marcatura $M'$ 
+è non deterministico quando ci sono più transizioni attivabili, non dico quale deve scattare poiché non ho un controllo globale del sistema.
