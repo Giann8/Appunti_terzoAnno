@@ -642,3 +642,12 @@ R2---R3
 R3---B
 ```
 B poi invia ad A i segnali ACK ed ECE, ECN Echo ovvero segnala la presenza di congestione in ECN ip 11, Wc viene quindi ridotta, ricevuto il ECN viene settato a 1 il CWR per confermare la ricezione, in modo da poter far operare B in modo più cauto.
+
+Keep alive timer
+#### Paws
+- Protection
+- Against
+- Wrapped
+- Signals
+
+RFC 9000
