@@ -651,3 +651,76 @@ Keep alive timer
 - Signals
 
 RFC 9000
+
+
+# Dns (domain name system)
+
+associa nomi a ip
+disaccoppio nome -> ip
+load balancing
+
+## Fully qualified domain  name (FQDN)
+come viene scritto?
+ex. `2->DI 5->UNIMI 2->IT` viene scritto un numero prima del dominio e per ogni `.` che suddivide le parole, i numeri rappresentano la lunghezza delle stringhe
+
+![[DNS_response.png]]
+`La query non presenta Resource record`
+
+srv1.di.unimi.it
+srv2.di.unimi.it
+
+
+res -> chiede di risolvere un nome a -> local DNS
+
+## E-mail
+![[../Images/Mail_schema.png]]
+
+
+- SMTP: Simple Mail Transfer Protocol
+- POP3
+
+Come è fatta una mail?
+
+#### Costruzione di una Mail
+Come negli altri protocolli è formato da un **HEADER** con sotto un body
+|HEADER|     
+|-----|
+|body|
+Questo è presente in un UA client e in un Envelope, quando una mail viene inviata si invia un MTA all'envelope (destinatario).
+
+Campi principali di una mai:
+- from:
+- to:
+- CC:
+- BCC
+I campi vengono utilizzati per decodificare la mail.
+Al termine dei campi, nella parte del body vengono aggiunti \n\n.
+Content-type: il tipo del contenuto;
+Content-Transfer-Encoding: come è codificato e quindi come posso decodificarlo
+Constant-length:numero di bytes nel body
+
+
+![[../Images/Content_description.png]]
+
+Quando troviamo un "Boundary" questo rappresenta il "TryAgain"
+
+#### Codifica Base64
+Utilizzato per inviare blocchi di dati binari decifrati.
+Overhead del 30% che ci consente di trasferire qualsiasi stream binaria senza che ci possano essere problemi con il protocollo SMTP.
+Con la tabella sopra possiamo andare a decodificare.
+
+v2 ->  01010111 01000100 00110000 00111001
+
+# HTTP
+è principalmente un protocollo di richiesta-risposta 
+|Http|
+|TLS|
+|TCP|
+
+Il messaggio HTTP è atomico, non possiamo cioè suddividerlo, la mandiamo dall'inizio alla fine.
+### Richiesta
+il primo campo identifica il metodo "<"HTTP">" (qualunque sia) |spazio| "<"URL">" |spazio| <"versione protocollo">
+<"Codice di stato">|Spazio|<"Testo relativo al codice">
+200 ok
+404 not found
+500 internal server error

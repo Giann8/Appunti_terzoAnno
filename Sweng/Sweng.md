@@ -1010,13 +1010,22 @@ state.sampleOperation(this);
 	- Si punta a programmare verso interfacce
 
 Dentro una classe qualsiasi è presente una classe Builder
+## Uml
 
-### Use Cases
+### Use Case(testuale)
+Una classe di funzionalità fornite dal sistema, cioè un'astrazione di un insieme di scenari relazionati tra loro
+Vengono fornite in modo testuale non formale pre e post condizioni, modalità di handling di eventuali eccezioni e flusso di svolgimento.
+### Scenari
+descrizione di come il sistema si usa in pratica
+
+### Use cases
 colleghiamo gli attori con gli use cases.
 - Attori: qualcuno o qualcosa con cui voglio dialogare
 
+### Attori
+Sono entità esterne che hanno un ruolo nell'utilizzo del programma, possono essere Attori primari se fanno partire il processo
 #### Come Identifico gli use cases?
-- partendo dagli attori
+- partendo dagli attori (Entità esterna al sistema)
 	- Cosa fanno?
 	- Cosa vogliono?
 Dopo aver capito chi sono gli attori e quali use cases servono faccio le Associazioni
@@ -1027,7 +1036,7 @@ Può avvenire tra attori e use cases:
 - Tra attori
 	- andiamo ad esplicitare relazioni tra ruoli (StaffMember -> LibraryMember)
 - Use cases
-	- simile ad extends
+	- simile ad extends,non ha cioè estensioni ma vado a sostituire alcune parti della descrizione.
 
 
 ---
@@ -1128,3 +1137,36 @@ una rete di petri è una 5-upla $[P,T,F,W,M_0]$ dove:
 $tT$  è abilitata in M se e solo se per ogni $/perogni p appartenente a pre(t) M(p)>=W(<p,t>)$
 lo scatto di una transizione t in una marcatura $M$ produce una nuova marcatura $M'$ 
 è non deterministico quando ci sono più transizioni attivabili, non dico quale deve scattare poiché non ho un controllo globale del sistema.
+
+### Relazioni:conflitto
+
+### Relazione di concorrenza
+due transizioni si dicono in conocrrenza:
+- strutturale se e solo se : $pre(t_1)interspre(t_2)=0$
+- effettiva in una marcatura M se e solo se:
+	- $M[t_1 > /and M[t_2> /and$
+Non si implicano a vicenda
+
+
+### Insieme di raggiungibilità
+L'insieme di raggiungibilità di una rete a partire da una M è il più piccolo insieme di marcature per cui:
+- vedere slides
+### Reti di petri e MSF
+#### Vitalità di una transizione
+Una transizione t in una marcatura M si dice viva con diversi gradi:
+- di grado 0 (morta):
+	- non abilitata in M e in nessuna delle marcature raggiungibili da M;
+- di grado 1:
+	- esiste cioè almeno una marcatura raggiungibile da M in cui t è abilitata;
+- di grado 2:
+	- per ogni k trovo almeno una sequenza ammissibile da M in cui la transizione scatta k volte. (k non infinito)
+- di grado 3:
+	- esiste almeno una sequenza ammissibile da M in cui la transizione t scatta infinite volte
+- di grado 4 (cioè **viva**):
+	- in ogni marcatura raggiungibile da M t non è morta, la rete è quindi viva.
+### Reti pure
+Una rete è detta pura se non ci sono t che sono sia in pre che in post
+
+
+### Copribilità
+Per ogni posto > rispetto allo stesso posto nella marcatura precedente sostituisco

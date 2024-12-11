@@ -154,6 +154,26 @@ L'admin deve istruire l'apparato riguardo il passaggio delle sottoreti, definend
 
 `passive-interface` serve a non far mandare le informazioni verso un certo route
 
+
+# Lezione_11
+## ACL extended
+possiamo utilizzare diversi quantificatori nella port number
+
+```
+access-list 110 permit TCp any host 192.168.200.200 eq 80
+access-list 110 deny Icmp any any (blocca qualsiasi segnale, anche di errore)
+```
+
+# Lezione_12
+
+## Java socket
+I server devono dare l'illusione all'utente di lavorare solo per lui
+
+## User Agent
+Qualunque browser è uno user agent, è un processo software che si interfaccia con l'utente sopra e con la rete sotto
+
+Le socket sono affidabili, portabili e permettono collegamento double direction.
+Numeri di porta sono unsigned short su 16 bit ( se unsigned long)
 # Esercizi
 ### Lezione_5
 1. Conversioni

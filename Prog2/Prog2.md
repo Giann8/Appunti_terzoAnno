@@ -391,7 +391,7 @@ T next()
 
 Iteratore Metodo
 
-Gen<T>fo
+Gen<"T">fo
 
 Implementazione 
 
@@ -414,3 +414,12 @@ La presenza di un metodo astratto obbliga i sottotipi ad avere quel metodo astra
 - L’ereditarietà è utile, strumento reso possibile dal polimorfismo e dal dispatching, presenta però alcuni limiti
 - Composizione + delega, approccio ortogonale a quello dell’ereditarietà
 
+# Gerarchia dei tipi
+
+### LSP
+1. Rule signature
+	Deve avere tutti i metodi di T con la stessa segnatura
+1. metodi
+	per ogni metodo il comportamento del figlio deve essere uguale a quella del padre
+3. proprietà 
+	se ho una proprietà descritta nel super-tipo devo averla anche nel sotto tipo
