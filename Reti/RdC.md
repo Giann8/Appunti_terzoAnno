@@ -724,3 +724,31 @@ il primo campo identifica il metodo "<"HTTP">" (qualunque sia) |spazio| "<"URL">
 200 ok
 404 not found
 500 internal server error
+
+### HTTP Pipelining
+Richiede risorse una dopo l'altra senza dover aspettare.
+Non altero l'ordine di richiesta del client
+
+## HTTP 2
+In http 1 abbiamo un grosso problema riguardante l'atomicità del messaggio, a causa di ciò è indivisibile sia dalla richiesta che dalla risposta e porta ad avere tutti i problemi riguardo http.
+http2  non è retrocompatibile.
+- Migliore uso TCP permettendo di inframezzare richieste e risposte sulla stessa connessione
+- codifica efficiente degli header (in binario per ridurre la quantità, più efficiente)
+- Sistema di priorità delle richieste, può scegliere quale richiesta è più importante di un'altra.
+- Sistema di invio push.
+
+In http 2 viene introdotto il concetto di frame (simile al livello 2), il messaggio viene diviso in almeno 1-2 frame, il primo frame sarà riservato all'header, gli altri da 2 a n invece saranno per i dati
+
+### Stream
+Mentre in http 1 abbiamo un unico stream, in http 2 posso avere più stream differenti.
+Funzionano come FIFO e fanno uso del sistema di priorità decidendo l'ordine degli stream in base ad essa.
+Nell'header è presente lo stream identifier che permette di identificare lo stream a cui appartiene.
+Nel frame del payload sono presenti lo stream ID e il payload che contiene il promised stream ID, payload che identifica lo stream come solo per inviare da una parte all'altra e non viceversa.
+
+ex.
+1 invia un messaggio a 2 senza PP
+2 invia un messaggio a 1 con PP che presenta stream ID su cui si trova e promised stream ID, ovvero a chi applicare il payload
+
+### Dash
+Dynamic Adaptive Streaming-over http
+Manifest: presenta le informazioni riguardanti il nostro video,

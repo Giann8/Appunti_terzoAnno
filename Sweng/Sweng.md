@@ -1170,3 +1170,8 @@ Una rete è detta pura se non ci sono t che sono sia in pre che in post
 
 ### Copribilità
 Per ogni posto > rispetto allo stesso posto nella marcatura precedente sostituisco
+
+---
+# Episodio crossover Monga-Bellettini (correzione penultimo Lab)
+
+Non tutti i presenter devono implementare l'interfaccia presenter.
