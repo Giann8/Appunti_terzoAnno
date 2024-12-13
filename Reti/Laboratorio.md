@@ -174,6 +174,33 @@ Qualunque browser è uno user agent, è un processo software che si interfaccia 
 
 Le socket sono affidabili, portabili e permettono collegamento double direction.
 Numeri di porta sono unsigned short su 16 bit ( se unsigned long)
+
+# Lezione_13
+## Socket
+La socket del server è la socket passiva che non si 
+
+Il client crea la socket, recupera l'indirizzo e 
+
+```java
+public class Client{
+public static void main(String[] args){
+Socket sClient;
+InetAddress ia;
+InetSocketAddress isa;
+
+sClient = new Socket();
+try {
+ia= InetAddress.getLocalHost();
+isa = new InetSocketAddress(ia,50000); //porta però che potrebbe essere giù in uso;
+} catch(UnknownHostException uhe){
+uhe.printstackTrace();
+}
+}
+}
+```
+la porta da mettere deve essere oltre a 49900 (peschiamo tra le effimere)
+no porta 80 per il server
+
 # Esercizi
 ### Lezione_5
 1. Conversioni
