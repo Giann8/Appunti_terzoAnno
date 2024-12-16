@@ -1175,3 +1175,7 @@ Per ogni posto > rispetto allo stesso posto nella marcatura precedente sostituis
 # Episodio crossover Monga-Bellettini (correzione penultimo Lab)
 
 Non tutti i presenter devono implementare l'interfaccia presenter.
+
+---
+# Matrici di Input e Output
+
