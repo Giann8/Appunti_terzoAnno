@@ -752,3 +752,12 @@ ex.
 ### Dash
 Dynamic Adaptive Streaming-over http
 Manifest: presenta le informazioni riguardanti il nostro video,
+
+
+# Content delivery network
+
+- Distribuzione geografica (manuale)
+- Distribuzione di popolarità dei contenuti
+	Esiste la "ZIPF" legge di potenza in powerlow
+
+Mininet: emulatore di rete per la simulazione
