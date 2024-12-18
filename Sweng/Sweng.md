@@ -1179,3 +1179,31 @@ Non tutti i presenter devono implementare l'interfaccia presenter.
 ---
 # Matrici di Input e Output
 
+
+
+# Ultima lezione
+## Theorem WTS = MWTS
+
+## Semantica temporale forte (strong) (informalmente)
+Una transizione può scattare solo in uno degli istanti identificati dalla sua funzione temporale
+Una transizione non può scattare prima di essere abilitata.
+Una transizione deve scattare ad un suo possibile tempo di scatto a meno che non venga disabilitata prima del suo massimo tempo di scatto ammissibile.
+
+>[[Tip]]
+>**_Semantica più diffusa (utile per i sistemi deterministici)_**
+
+### Assioma 4:
+- Il massimo tempo di scatto di tutte le abilitazioni nella marcatura iniziale deve essere maggiore o uguale del massimo timestamp associato ad un gettone della marcatura.
+- La marcatura iniziale deve essere consistente con la nuova semantica
+- Il gettone 
+
+### Assioma 5: Sequenza di scatti forte (STS)
+Una sequenza di scatti MWTS che parta da una marcatura forte iniziale è una sequenza di scatti forte se per ogni scatto il tempo di scatto della transizione...
+
+### Mixed time semantics
+Non più una rete a semantica forte o debole ma un misto (prendo le cose migliori di entrambe)
+- Transizioni forti scattano se non disabilitate prima
+- Transizioni deboli si adeguano alle forti (se loro scattano prima queste aspettano)
+
+### Mixed TS: influenze globali
+
