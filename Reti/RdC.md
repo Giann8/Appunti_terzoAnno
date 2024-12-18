@@ -761,3 +761,6 @@ Manifest: presenta le informazioni riguardanti il nostro video,
 	Esiste la "ZIPF" legge di potenza in powerlow
 
 Mininet: emulatore di rete per la simulazione
+
+# Edge computing
+

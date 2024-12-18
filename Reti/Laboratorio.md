@@ -200,7 +200,7 @@ uhe.printstackTrace();
 ```
 la porta da mettere deve essere oltre a 49900 (peschiamo tra le effimere)
 no porta 80 per il server
-
+Mi faccio dare sul server una porta effimera che stampo e poi metto nel client evitando collisioni.
 # Esercizi
 ### Lezione_5
 1. Conversioni
