@@ -1207,3 +1207,12 @@ Non più una rete a semantica forte o debole ma un misto (prendo le cose miglior
 
 ### Mixed TS: influenze globali
 
+
+## Esempio di comparator
+```java
+  private static final Comparator<TimeOfRun> COMPARATOR = Comparator
+      .comparingDouble(TimeOfRun::time)
+      .reversed()
+      .thenComparing(tr -> tr.name)
+      .reversed();˙
+```
