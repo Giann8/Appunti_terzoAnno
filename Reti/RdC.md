@@ -764,3 +764,15 @@ Mininet: emulatore di rete per la simulazione
 
 # Edge computing
 
+### In esame sicuri
+TCP
+
+300km di fibra a 10mbps e 4kb determinare l'utilizzo del canale:
+$V=/frac{t_x}{tx_x + lamda*t_p}$
+su fibra la convenzione è 3x10^8 di propagazione quindi per facilitare avremo 300km
+vale anche per il rame o altri materiali
+$t_p =/fraq{3*10^2}{3*10^8}$
+$t_x=/fraction{}{}$
+
+GO-back-N e 3 bit di sequence number, 2^3 -1 (essendo go-back-n) 
+  $V=$
